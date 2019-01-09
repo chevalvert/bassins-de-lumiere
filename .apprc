@@ -1,0 +1,6 @@
+{
+  "host": {
+    "port": 8888,
+    "dist": "build"
+  }
+}
