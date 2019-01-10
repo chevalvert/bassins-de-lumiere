@@ -64,6 +64,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.1",
     "module-alias": "^2.1.0",
+    "nanohtml": "^1.4.0",
     "package": "^1.0.1",
     "parse-strings-in-object": "^1.2.0",
     "rc": "^1.2.8",

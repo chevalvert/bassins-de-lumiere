@@ -1,14 +1,25 @@
 import ws from 'controllers/websocket'
 import rest from 'controllers/rest'
+import LogScreen from 'components/log-screen'
 
-Promise.resolve()
-  .then(() => rest.get('configuration'))
-  .then(configuration => {
-    window.configuration = configuration
-    document.title = `[${window.configuration.package.version}] ${document.title}`
-    console.log(configuration)
-  })
-  .catch(console.error)
+const logScreen = new LogScreen({
+  title: 'Chargement',
+  state: 'log'
+})
+
+;(async () => {
+  logScreen.mount(document.body)
+  window.configuration = await rest.get('configuration')
+  document.title = `[${window.configuration.package.version}] ${document.title}`
+  console.log(window.configuration)
+
+  logScreen.log('hello')
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  logScreen.log('world')
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
+  logScreen.destroy()
+})()
 
 ws.on('echo', data => console.log(data))
 

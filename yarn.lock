@@ -82,7 +82,7 @@ acorn@^4.0.3:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
   integrity sha1-EFSVrlNh1pe9GVyCUZLhrX8lN4c=
 
-acorn@^5.0.0, acorn@^5.5.0:
+acorn@^5.0.0, acorn@^5.2.1, acorn@^5.5.0:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
   integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
@@ -2621,6 +2621,11 @@ estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1:
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
   integrity sha1-De4/7TH81GlhjOc0IJn8GvoL2xM=
 
+estree-is-member-expression@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/estree-is-member-expression/-/estree-is-member-expression-1.0.0.tgz#e724721e0a14949d363915fd71448eaa6312f590"
+  integrity sha512-Ec+X44CapIGExvSZN+pGkmr5p7HwUVQoPQSd458Lqwvaf4/61k/invHSh4BYK8OXnCkfEhWuIoG5hayKLQStIg==
+
 esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
@@ -3430,7 +3435,7 @@ hyperscript-attribute-to-property@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyperscript-attribute-to-property/-/hyperscript-attribute-to-property-1.0.2.tgz#66ad4164f88beefacf46ec884bd3d1173c1c382a"
   integrity sha512-oerMul16jZCmrbNsUw8QgrtDzF8lKgFri1bKQjReLw1IhiiNkI59CWuzZjJDGT79UQ1YiWqXhJMv/tRMVqgtkA==
 
-hyperx@^2.0.3, hyperx@^2.3.0:
+hyperx@^2.0.3, hyperx@^2.3.0, hyperx@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hyperx/-/hyperx-2.5.0.tgz#33ff8d139a230b094af899de4bfe471b5fba75d4"
   integrity sha512-k/Xxid10hReiiAXZ8LtheiABewkn3Y/rNzzsCZlvGE4U+0CDRuPGQu+d7btB/PchgPKr1RZAy3fDEUFBmB+xJg==
@@ -4645,7 +4650,7 @@ nanoassert@^1.1.0:
   resolved "https://registry.yarnpkg.com/nanoassert/-/nanoassert-1.1.0.tgz#4f3152e09540fde28c76f44b19bbcd1d5a42478d"
   integrity sha1-TzFS4JVA/eKMdvRLGbvNHVpCR40=
 
-nanobench@^2.1.1:
+nanobench@^2.1.0, nanobench@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/nanobench/-/nanobench-2.1.1.tgz#c2f23fcce116d50b4998b1954ba114674c137269"
   integrity sha512-z+Vv7zElcjN+OpzAxAquUayFLGK3JI/ubCl0Oh64YQqsTGG09CGqieJVQw4ui8huDnnAgrvTv93qi5UaOoNj8A==
@@ -4654,6 +4659,23 @@ nanobench@^2.1.1:
     chalk "^1.1.3"
     mutexify "^1.1.0"
     pretty-hrtime "^1.0.2"
+
+nanohtml@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/nanohtml/-/nanohtml-1.4.0.tgz#037ac7cf41513269799aaacf97c5eff456c452d1"
+  integrity sha512-UceOMAdudLvo0piPDy+NhAEJpGD4H/pE2OWgV8xZ9D4oqJv9RjzxbyucajqJkjSsNU22XahuFAJoJJOhzJ2AVQ==
+  dependencies:
+    acorn "^5.2.1"
+    camel-case "^3.0.0"
+    convert-source-map "^1.5.1"
+    estree-is-member-expression "^1.0.0"
+    hyperx "^2.5.0"
+    is-boolean-attribute "0.0.1"
+    nanoassert "^1.1.0"
+    nanobench "^2.1.0"
+    normalize-html-whitespace "^0.2.0"
+    through2 "^2.0.3"
+    transform-ast "^2.4.0"
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -7165,7 +7187,7 @@ tfunk@^3.0.1:
     chalk "^1.1.1"
     object-path "^0.9.0"
 
-through2@^2.0.0, through2@^2.0.1:
+through2@^2.0.0, through2@^2.0.1, through2@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.5.tgz#01c1e39eb31d07cb7d03a96a70823260b23132cd"
   integrity sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==
@@ -7250,7 +7272,7 @@ tough-cookie@~2.4.3:
     psl "^1.1.24"
     punycode "^1.4.1"
 
-transform-ast@^2.2.1:
+transform-ast@^2.2.1, transform-ast@^2.4.0:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/transform-ast/-/transform-ast-2.4.4.tgz#bebf494e2e73f024746f76348bc86a5992851d00"
   integrity sha512-AxjeZAcIOUO2lev2GDe3/xZ1Q0cVGjIMk5IsriTy8zbWlsEnjeB025AhkhBJHoy997mXpLd4R+kRbvnnQVuQHQ==

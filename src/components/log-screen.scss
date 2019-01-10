@@ -1,0 +1,28 @@
+.log-screen {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: black;
+
+  &[data-state="log"] { color: white }
+  &[data-state="error"] { color: red }
+  &[data-state="warning"] { color: yellow }
+  &[data-state="success"] { color: green }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 3rem;
+  }
+}
