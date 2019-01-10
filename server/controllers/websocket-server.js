@@ -5,7 +5,7 @@ module.exports = class WebSocketServer extends Emitter {
   constructor (server) {
     super()
     if (!server) {
-      throw new Error('WebSocketServer constructor must be given a valid express app')
+      throw Error('WebSocketServer constructor must be given a valid express app')
     }
 
     this.server = new websocket.Server({ server })

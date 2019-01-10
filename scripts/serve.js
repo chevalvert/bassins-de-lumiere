@@ -69,6 +69,7 @@ function init () {
     minify: false,
     middleware: middlewares,
     files: [
+      path.join(paths.root, '.apprc'),
       path.join(paths.layouts, '**/*'),
       path.join(paths.static, '**/*')
     ]
