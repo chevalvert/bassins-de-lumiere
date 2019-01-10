@@ -60,10 +60,12 @@
     "yo-yoify": "^4.0.0"
   },
   "dependencies": {
+    "chokidar": "^2.0.4",
     "cors": "^2.8.5",
     "express": "^4.16.1",
     "module-alias": "^2.1.0",
     "package": "^1.0.1",
+    "parse-strings-in-object": "^1.2.0",
     "rc": "^1.2.8",
     "reconnectingwebsocket": "^1.0.0",
     "tiny-emitter": "^2.0.2",
