@@ -1,0 +1,36 @@
+.input-toggle {
+  &__label {
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__output {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    height: 1em;
+    vertical-align: middle;
+    border: 1px solid $white;
+    background: $black;
+  }
+
+  &__output::after {
+    @include easing(300ms, transform);
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: $white;
+  }
+
+  &__input:checked + &__output::after {
+    transform: translateX(100%);
+  }
+}

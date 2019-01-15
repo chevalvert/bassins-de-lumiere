@@ -1,0 +1,65 @@
+@mixin input-range-track () {
+  cursor: pointer;
+  background: $gray;
+  height: 100%;
+}
+
+@mixin input-range-thumb () {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  background: $white;
+  height: 2em;
+  width: 2em;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: purple;
+  }
+
+  &:hover, &:active {
+    background: $accent;
+  }
+}
+
+.input-range {
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__filler {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    // NOTE: the width is set in @components/input-range
+    width: 0;
+    background: $white;
+  }
+
+  &__input {
+    appearance: none;
+    background: none;
+    display: block;
+    width: 100%;
+
+    &:focus { outline: none; }
+
+    &::-webkit-slider-runnable-track { @include input-range-track(); }
+    &::-webkit-slider-thumb {
+      @include input-range-thumb();
+      -webkit-appearance: none;
+    }
+
+    &::-moz-range-track { @include input-range-track(); }
+    &::-moz-range-thumb { @include input-range-thumb(); }
+
+    &::-ms-track { @include input-range-track(); }
+    &::-ms-thumb  { @include input-range-thumb(); }
+  }
+}

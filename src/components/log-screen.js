@@ -1,5 +1,5 @@
-import html from 'nanohtml'
 import DomComponent from 'abstractions/DomComponent'
+import html from 'nanohtml'
 
 export default class LogScreen extends DomComponent {
   constructor ({

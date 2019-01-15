@@ -2,5 +2,11 @@
   "host": {
     "port": 8888,
     "dist": "build"
+  },
+
+  "shapefile": "vert1.svg",
+
+  "html": {
+    "title": "bassins de&nbsp;lumière"
   }
 }

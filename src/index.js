@@ -1,39 +1,12 @@
-import ws from 'controllers/websocket'
-import rest from 'controllers/rest'
-import LogScreen from 'components/log-screen'
+import App from 'layouts/app'
+import load from 'controllers/loader'
+// import raw from 'nanohtml/raw'
 
-const logScreen = new LogScreen({
-  title: 'Chargement',
-  state: 'log'
-})
+const app = new App()
 
-;(async () => {
-  logScreen.mount(document.body)
-  window.configuration = await rest.get('configuration')
-  document.title = `[${window.configuration.package.version}] ${document.title}`
-  console.log(window.configuration)
+load(() => {
+  document.title = `${document.title} – ${window.configuration.package.version}`
 
-  logScreen.log('hello')
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  logScreen.log('world')
-  await new Promise(resolve => setTimeout(resolve, 1000))
-
-  logScreen.destroy()
-})()
-
-ws.on('echo', data => console.log(data))
-
-window.addEventListener('click', async () => {
-  try {
-    const response = await rest.post('test', {
-      test: true
-    })
-    console.log(response)
-  } catch (err) {
-    console.error(err)
-  }
-
-  // ws.send('echo', {
-  //   foo: 'bar'
-  // })
+  app.mount(document.body)
+  console.log('[DEBUG] App is ready')
 })

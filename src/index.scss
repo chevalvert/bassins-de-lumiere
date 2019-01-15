@@ -2,5 +2,17 @@
 @import 'sass/reset';
 @import 'sass/helpers';
 
+$white: #FFFFFF;
+$black: #000000;
+$accent: #0000FF;
+$gray: gray;
+
+$gutter: 2rem;
+
 @import 'sass/base';
+
+@import 'components/input-range';
+@import 'components/input-toggle';
 @import 'components/log-screen';
+@import 'components/map';
+@import 'components/sidebar';
