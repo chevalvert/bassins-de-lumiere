@@ -17,8 +17,10 @@ export default async (callback) => {
     window.configuration = await rest.get('configuration')
 
     screen.log('shapefile')
-    const shapes = new Shapefile(await rest.get('shapefile/vert1'))
-    console.log(shapes)
+    const shapefile = new Shapefile(await rest.get('shapefile/vert1'))
+    console.log(shapefile)
+
+    store.set('points', shapefile.points)
 
     screen.destroy()
     callback()

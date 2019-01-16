@@ -1,6 +1,9 @@
 import App from 'layouts/app'
 import load from 'controllers/loader'
-// import raw from 'nanohtml/raw'
+
+if (!window.isProduction) {
+  require('fps-indicator')({ position: 'bottom-left' })
+}
 
 const app = new App()
 

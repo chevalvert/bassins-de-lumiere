@@ -5,6 +5,7 @@
   },
 
   "shapefile": "vert1.svg",
+  "onionSkinsOpacityCutoffFactor": 2,
 
   "html": {
     "title": "bassins de&nbsp;lumière"

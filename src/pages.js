@@ -1,8 +1,7 @@
 module.exports = [{
   output: 'index.html',
   content: {
-    title: 'Title',
-    description: 'description'
+    title: 'Bassins de lumière'
   },
   layout: 'layouts/index.hbs'
 }]

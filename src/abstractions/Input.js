@@ -15,10 +15,20 @@ export default class Input extends DomComponent {
 
   didMount () {
     this.onchange()
+    store.watch(this.storeKey, value => this.silentExec(() => {
+      this.value = value
+    }))
   }
 
   onchange (e, t) {
+    if (this.noStore) return
     store.set(this.storeKey, this.value)
+  }
+
+  silentExec (callback) {
+    this.noStore = true
+    callback()
+    this.noStore = false
   }
 
   reset () {

@@ -2,29 +2,39 @@ import DomComponent from 'abstractions/DomComponent'
 import html from 'nanohtml'
 import InputRange from 'components/input-range'
 import InputToggle from 'components/input-toggle'
+import OnionSkin from 'components/onion-skin'
 import raw from 'nanohtml/raw'
 
 export default class Sidebar extends DomComponent {
   render () {
-    this.refs.test = this.registerComponent(InputToggle, {
-      label: 'test toggle',
-      tooltip: v => `test toggle ${(v * 100).toFixed(0)}%`,
-      storeKey: 'debugToggle'
+    this.refs.sliderA = this.registerComponent(InputRange, {
+      label: 'A',
+      range: [0, 79],
+      step: 1,
+      value: 0,
+      tooltip: v => `test ${(v * 100).toFixed(0)}%`,
+      storeKey: 'currentPointA'
     })
 
-    this.refs.test2 = this.registerComponent(InputRange, {
-      label: 'test slider',
-      tooltip: v => `test slider ${(v * 100).toFixed(0)}%`,
-      storeKey: 'debugSlider'
+    this.refs.sliderB = this.registerComponent(InputRange, {
+      label: 'B',
+      range: [0, 79],
+      step: 1,
+      value: 79,
+      tooltip: v => `test ${(v * 100).toFixed(0)}%`,
+      storeKey: 'currentPointB'
     })
 
-    this.refs.test3 = this.registerComponent(InputRange, {
-      label: 'test slider range',
-      tooltip: v => `test slider ${(v * 100).toFixed(0)}%`,
-      step: 0.001,
-      storeKey: 'debugSlider2',
-      fill: true
+    this.refs.sliderC = this.registerComponent(InputRange, {
+      label: 'C',
+      range: [0, 79],
+      step: 1,
+      value: 79,
+      tooltip: v => `test ${(v * 100).toFixed(0)}%`,
+      storeKey: 'currentPointC'
     })
+
+    this.refs.onionSkin = this.registerComponent(OnionSkin)
 
     return html`
     <section class='sidebar'>
@@ -32,9 +42,12 @@ export default class Sidebar extends DomComponent {
         ${raw(window.configuration.html.title)}
       </h1>
       <div class='sidebar__section'>
-        ${this.refs.test.raw()}
-        ${this.refs.test2.raw()}
-        ${this.refs.test3.raw()}
+        ${this.refs.sliderA.raw()}
+        ${this.refs.sliderB.raw()}
+        ${this.refs.sliderC.raw()}
+      </div>
+      <div class='sidebar__section'>
+        ${this.refs.onionSkin.raw()}
       </div>
     </section>`
   }
