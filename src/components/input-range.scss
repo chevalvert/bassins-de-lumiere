@@ -11,6 +11,8 @@
   background: $white;
   height: 2em;
   width: 2em;
+  cursor: pointer;
+  cursor: ew-resize;
 
   &:hover, &:active {
     background: $accent;

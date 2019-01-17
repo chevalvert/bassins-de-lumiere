@@ -10,14 +10,22 @@ export default class Input extends DomComponent {
     super()
     this.defaultValue = value
     this.storeKey = storeKey || this.constructor.name + '_' + cuid()
-    this.bindFuncs(['onchange', 'reset'])
+    this.bindFuncs(['onchange', 'reset', '_updateValue'])
   }
 
   didMount () {
     this.onchange()
-    store.watch(this.storeKey, value => this.silentExec(() => {
+    store.watch(this.storeKey, this._updateValue)
+  }
+
+  willUnmount () {
+    store.unwatch(this.storeKey, this._updateValue)
+  }
+
+  _updateValue (value) {
+    this.silentExec(() => {
       this.value = value
-    }))
+    })
   }
 
   onchange (e, t) {

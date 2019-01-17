@@ -7,11 +7,11 @@ const stored = {}
 window.store = stored
 
 export default {
-  watch: (k, cb, immediate = false) => {
+  watch: (k, cb, { immediate = false } = {}) => {
     events.on(NS + k, cb)
     immediate && cb(stored[k])
   },
-  watchOnce: (k, cb, immediate = false) => {
+  watchOnce: (k, cb, { immediate = false } = {}) => {
     events.once(NS + k, cb)
     immediate && cb(stored[k])
   },
