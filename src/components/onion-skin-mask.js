@@ -42,10 +42,11 @@ export default class OnionSkinMask extends Canvas {
       (heading - (1 - aperture) / 2) * 2 * Math.PI,
       (heading + (1 - aperture) / 2) * 2 * Math.PI
     ]
+    const opacity = window.configuration['onionSkinsMaskOpacity']
 
     window.requestAnimationFrame(() => {
       this.clear()
-      this.context.fillStyle = 'rgba(0, 0, 0, 0.8)'
+      this.context.fillStyle = `rgba(0, 0, 0, ${opacity})`
 
       this.context.beginPath()
       this.context.moveTo(...center)

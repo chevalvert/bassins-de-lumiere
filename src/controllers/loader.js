@@ -1,6 +1,6 @@
 import LogScreen from 'components/log-screen'
 import rest from 'controllers/rest'
-import Shapefile from 'abstractions/Shapefile'
+import Dataset from 'abstractions/Dataset'
 import store from 'controllers/store'
 import error from 'controllers/error'
 
@@ -16,11 +16,10 @@ export default async (callback) => {
     screen.log('configuration')
     window.configuration = await rest.get('configuration')
 
-    screen.log('shapefile')
-    const shapefile = new Shapefile(await rest.get('shapefile/vert1'))
-    console.log(shapefile)
-
-    store.set('points', shapefile.points)
+    screen.log('dataset')
+    const datasetFiles = await rest.get('dataset/' + window.configuration['dataset'])
+    const dataset = new Dataset(datasetFiles)
+    store.set('points', dataset.points)
 
     screen.destroy()
     callback()

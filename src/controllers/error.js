@@ -5,7 +5,7 @@ export default err => {
 
   const error = new LogScreen({
     title: err.name,
-    message: err.message + '\n' + err.stack,
+    message: window.isProduction ? err.message : err.message + '\n' + err.stack,
     state: 'error'
   })
 

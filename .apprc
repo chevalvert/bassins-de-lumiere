@@ -1,11 +1,18 @@
 {
   "host": {
     "port": 8888,
-    "dist": "build"
+    "dist": "build",
+    "datas": "static/datas"
   },
 
-  "shapefile": "vert1.svg",
+  "dataset": "vert1",
+  "datasetRequiredFiles": [
+    "__test",
+    "shapes.svg"
+  ],
+
   "onionSkinsOpacityCutoffFactor": 2,
+  "onionSkinsMaskOpacity": 0.9,
 
   "html": {
     "title": "bassins de&nbsp;lumière"
