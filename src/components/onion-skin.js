@@ -35,6 +35,7 @@ export default class OnionSkin extends DomComponent {
   }
 
   didMount () {
+    // DEBUG: performance
     store.watch('currentPointA', index => {
       this.visibleSkinsIndexesRange[0] = index
       this.update()
@@ -56,7 +57,9 @@ export default class OnionSkin extends DomComponent {
       this.hideAllSkins()
 
       const cutoff = window.configuration['onionSkinsOpacityCutoffFactor']
-      const range = [...this.visibleSkinsIndexesRange].sort((a, b) => a - b)
+      const range = [...this.visibleSkinsIndexesRange]
+        .sort((a, b) => a - b)
+        .map(v => Math.floor(v * this.refs.skins.length))
       for (let i = range[0]; i <= range[1]; i++) {
         const opacity = range[0] < range[1]
           ? normalize(i, range[0], range[1]) ** cutoff
@@ -68,14 +71,14 @@ export default class OnionSkin extends DomComponent {
 
   hideAllSkins () {
     this.refs.skins.forEach(skin => {
-      skin.style.display = 'none'
+      skin.querySelector('svg').style.display = 'none'
     })
   }
 
   showSkin (index, { opacity = 1 } = {}) {
     const skinEl = this.refs.skins[index]
     if (!skinEl) return
-    skinEl.style.display = ''
-    skinEl.style.opacity = opacity.toFixed(2)
+    skinEl.querySelector('svg').style.display = ''
+    skinEl.querySelector('svg').style.opacity = opacity.toFixed(2)
   }
 }

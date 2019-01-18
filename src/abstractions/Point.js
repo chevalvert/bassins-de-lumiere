@@ -20,11 +20,7 @@ export default class Point {
     this.circle = getSvgPolygonPoints(this.circleEl)
     this.aabb = boundingBox(this.circle)
 
-    this.normalizedShape = [...this.shape].map(p => normalize2d(p, this.aabb))
-
-    // console.log(this.aabb)
-    // console.log(this.shape)
-    // console.log(this.normalizedShape)
+    this.normalizedShape = [...this.shape].map(p => normalize2d(p, this.aabb, { keepAspectRatio: true }))
   }
 
   get position () { return this.aabb.center }

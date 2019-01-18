@@ -20,6 +20,8 @@ export default async (callback) => {
     const datasetFiles = await rest.get('dataset/' + window.configuration['dataset'])
     const dataset = new Dataset(datasetFiles)
     store.set('points', dataset.points)
+    store.set('path', dataset.path)
+    store.set('map', dataset.map)
 
     screen.destroy()
     callback()

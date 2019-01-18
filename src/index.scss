@@ -11,10 +11,12 @@ $gutter: 2rem;
 
 @import 'sass/base';
 
+@import 'components/input-handle';
 @import 'components/input-range';
 @import 'components/input-toggle';
 @import 'components/log-screen';
-@import 'components/map';
+@import 'components/map-box';
+@import 'components/map-box-overlay';
 @import 'components/onion-skin';
 @import 'components/onion-skin-mask';
 @import 'components/sidebar';

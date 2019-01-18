@@ -2,6 +2,8 @@ import cuid from 'cuid'
 import DomComponent from 'abstractions/DomComponent'
 import store from 'controllers/store'
 
+window.storeSet = store.set
+
 export default class Input extends DomComponent {
   constructor ({
     value,
@@ -9,6 +11,7 @@ export default class Input extends DomComponent {
   } = {}) {
     super()
     this.defaultValue = value
+    this.value = value
     this.storeKey = storeKey || this.constructor.name + '_' + cuid()
     this.bindFuncs(['onchange', 'reset', '_updateValue'])
   }

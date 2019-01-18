@@ -25,6 +25,10 @@
   resolved "https://registry.yarnpkg.com/@f/svg-namespace/-/svg-namespace-1.0.1.tgz#f6f1a5ce5d3971a4ade91a11d22d4c459acd375f"
   integrity sha1-9vGlzl05caSt6RoR0i1MRZrNN18=
 
+"@internet/raf@pqml/raf":
+  version "0.2.1"
+  resolved "https://codeload.github.com/pqml/raf/tar.gz/13e2151d3f22f548d224a373f981bfb80bca53b0"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1543,15 +1547,6 @@ clone-deep@^2.0.1:
     is-plain-object "^2.0.4"
     kind-of "^6.0.0"
     shallow-clone "^1.0.0"
-
-clone-deep@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/clone-deep/-/clone-deep-4.0.1.tgz#c19fd9bdbbf85942b4fd979c84dcf7d5f07c2387"
-  integrity sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==
-  dependencies:
-    is-plain-object "^2.0.4"
-    kind-of "^6.0.2"
-    shallow-clone "^3.0.0"
 
 clone-regexp@^1.0.0:
   version "1.0.1"
@@ -4961,6 +4956,11 @@ npm-run-path@^2.0.0:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+nudged@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/nudged/-/nudged-1.4.0.tgz#68f47cebfeeceb9891fae3f299aa2af4f5a829ea"
+  integrity sha1-aPR86/7s65iR+uPymaoq9PWoKeo=
+
 num2fraction@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/num2fraction/-/num2fraction-1.2.2.tgz#6f682b6a027a4e9ddfa4564cd2589d1d4e669ede"
@@ -5300,6 +5300,11 @@ path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
+
+path-lerp@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/path-lerp/-/path-lerp-1.0.2.tgz#d5af70195f5f7d05d5610da42bfe1985b6fcf3cf"
+  integrity sha1-1a9wGV9ffQXVYQ2kK/4Zhbb8888=
 
 path-parse@^1.0.6:
   version "1.0.6"
@@ -6631,13 +6636,6 @@ shallow-clone@^1.0.0:
     kind-of "^5.0.0"
     mixin-object "^2.0.1"
 
-shallow-clone@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/shallow-clone/-/shallow-clone-3.0.0.tgz#317b701facce5e742d4c04c64e1d52f957e22b28"
-  integrity sha512-Drg+nOI+ofeuslBf0nulyWLZhK1BZprqNvPJaiB4VvES+9gC6GG+qOVAfuO12zVSgxq9SKevcme7S3uDT6Be8w==
-  dependencies:
-    kind-of "^6.0.2"
-
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -7174,11 +7172,6 @@ supports-color@^5.3.0, supports-color@^5.4.0:
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
   dependencies:
     has-flag "^3.0.0"
-
-svg-parse@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/svg-parse/-/svg-parse-1.3.2.tgz#88c6f545b23a99e548bf49830b42de640bb673a5"
-  integrity sha512-Ri1oaFUn8YFaSOGbQeIA1YUQx4G6+h5YRtNTsdrZn3ppAfUEuxGdJp9GIj8vyysKITZ5qRM1qLIrsLWr1VPUKg==
 
 svg-tags@^1.0.0:
   version "1.0.0"

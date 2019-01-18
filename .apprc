@@ -8,13 +8,19 @@
   "dataset": "vert1",
   "datasetRequiredFiles": [
     "__test",
-    "shapes.svg"
+    "shapes.svg",
+    "map.svg"
   ],
 
   "onionSkinsOpacityCutoffFactor": 2,
   "onionSkinsMaskOpacity": 0.9,
 
+  "mapPathDefaultStyle": { "strokeStyle": "black", "lineWidth": 2 },
+  "mapPathSelectedStyle": { "strokeStyle": "black", "lineWidth": 10 },
+
+  "pathHandlesAdaptiveEasingRange": [1, 0.09],
+
   "html": {
-    "title": "bassins de&nbsp;lumière"
+    "title": "bassins<br>de&nbsp;lumière"
   }
 }

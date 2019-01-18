@@ -79,7 +79,12 @@ export default class DomComponent {
   }
 
   bindFuncs (funcs) {
-    funcs.forEach(func => { this[func] = this[func].bind(this) })
+    funcs.forEach(func => {
+      if (!this[func]) {
+        throw new ReferenceError(`Binding fail: ${this.constructor.name} does not have a method called '${func}'`)
+      }
+      this[func] = this[func].bind(this)
+    })
   }
 
   // Remove the DOM and destroy the component

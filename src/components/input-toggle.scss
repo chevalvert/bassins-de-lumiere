@@ -1,6 +1,6 @@
 .input-toggle {
   &__label {
-    user-select: none;
+    @include no-select;
     cursor: pointer;
   }
 

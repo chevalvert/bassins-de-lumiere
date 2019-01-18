@@ -1,12 +1,12 @@
 import DomComponent from 'abstractions/DomComponent'
 import html from 'nanohtml'
-import Map from 'components/map'
+import MapBox from 'components/map-box'
 import Sidebar from 'components/sidebar'
 
 export default class App extends DomComponent {
   render () {
+    this.refs.map = this.registerComponent(MapBox)
     this.refs.sidebar = this.registerComponent(Sidebar)
-    this.refs.map = this.registerComponent(Map)
 
     return html`
     <main id='App' class='app'>

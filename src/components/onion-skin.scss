@@ -16,6 +16,7 @@
   }
 
   &__skin svg {
+    will-change: opacity;
     fill: none;
     stroke: $white;
     stroke-width: 1px;

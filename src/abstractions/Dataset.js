@@ -3,6 +3,8 @@
  */
 
 import 'nodelist-foreach'
+import Map from 'abstractions/Map'
+import Path from 'abstractions/Path'
 import Point from 'abstractions/Point'
 import raw from 'nanohtml/raw'
 
@@ -16,7 +18,8 @@ export default class Dataset {
     if (!this.checkIntegrity()) return
 
     this.parseShapes(files['shapes.svg'])
-    this.parseTest(files['__test'])
+    this.parseMap(files['map.svg'])
+    this.path = new Path(this.points)
   }
 
   checkIntegrity (files = this.files) {
@@ -29,12 +32,13 @@ export default class Dataset {
   }
 
   parseShapes (shapes) {
-    const svg = raw(shapes)[0]
-    const groups = svg.querySelectorAll('g')
+    const shapesElement = [...raw(shapes)].find(el => el.nodeName === 'svg')
+    const groups = shapesElement.querySelectorAll('g')
     this.points = [...groups].map(group => new Point(group))
   }
 
-  parseTest (test) {
-    console.log(test)
+  parseMap (map) {
+    const mapElement = [...raw(map)].find(el => el.nodeName === 'svg')
+    this.map = new Map(mapElement)
   }
 }

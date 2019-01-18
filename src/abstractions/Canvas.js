@@ -7,12 +7,26 @@ export default class Canvas extends DomComponent {
   }
 
   didMount () {
-    this.bindFuncs(['didResize'])
+    this.bindFuncs(['didResize', 'updateSize'])
     this.context = this.refs.base.getContext('2d')
+
+    window.addEventListener('resize', this.updateSize)
+    this.updateSize()
+  }
+
+  willUnmount () {
+    window.removeEventListener('resize', this.updateSize)
   }
 
   willResize () {}
   didResize () {}
+
+  updateSize () {
+    const container = this.refs.base.parentNode
+    const width = container.clientWidth
+    const height = container.clientHeight
+    this.resize([width, height])
+  }
 
   resize ([width, height], css = true) {
     window.requestAnimationFrame(() => {

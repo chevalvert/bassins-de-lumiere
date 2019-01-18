@@ -1,5 +1,6 @@
 import DomComponent from 'abstractions/DomComponent'
 import html from 'nanohtml'
+import htmlEncode from 'utils/string-html-encode'
 import raw from 'nanohtml/raw'
 
 export default class LogScreen extends DomComponent {
@@ -17,7 +18,7 @@ export default class LogScreen extends DomComponent {
   }
 
   render () {
-    this.refs.message = html`<div class='log-screen__message'>${raw(this.message.replace(/\n/g, '<br>'))}</div>`
+    this.refs.message = html`<div class='log-screen__message'>${raw(htmlEncode(this.message).replace(/\n/g, '<br>'))}</div>`
     return html`
       <section class='log-screen ${this.className}' data-state='${this.state}'>
         <div class='log-screen__content'>

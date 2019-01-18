@@ -9,11 +9,7 @@ export default class OnionSkinMask extends Canvas {
 
   didMount () {
     super.didMount()
-    this.bindFuncs(['updateSize', 'update'])
-
-    window.addEventListener('resize', this.updateSize)
-    this.updateSize()
-
+    this.bindFuncs(['update'])
     store.watch('aperture', this.update)
     store.watch('heading', this.update)
     this.update()
@@ -21,16 +17,13 @@ export default class OnionSkinMask extends Canvas {
 
   willUnmount () {
     super.willUnmount()
-    window.removeEventListener('resize', this.updateSize)
     store.unwatch('aperture', this.update)
     store.unwatch('heading', this.update)
   }
 
-  updateSize () {
-    const container = this.refs.base.parentNode
-    const width = container.clientWidth
-    const height = container.clientHeight
-    this.resize([width, height])
+  didResize () {
+    super.didResize()
+    this.update()
   }
 
   update () {
