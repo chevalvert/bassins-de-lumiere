@@ -3,11 +3,16 @@ import boundingBox from 'utils/bounding-box'
 import normalize2d from 'utils/normalize-2d-point'
 
 export default class Point {
-  constructor (svgGroup) {
+  constructor (svgGroup, features) {
     this.shapeEl = svgGroup.querySelector('polygon.shape')
     this.circleEl = svgGroup.querySelector('polygon.circle')
     if (!this.shapeEl || !this.circleEl) {
       throw new Error('Badly formatted svg group')
+    }
+
+    this.features = features
+    if (!this.features) {
+      throw new Error('Point should have a valid GeoJON feature object')
     }
 
     // NOTE: this allow setting CSS stroke-width in real pixels units
@@ -24,6 +29,7 @@ export default class Point {
   }
 
   get position () { return this.aabb.center }
+  get hasPanorama () { return this.features && this.features.properties && !!this.features.properties.panorama }
 
   createViewBox ({ padding = 0 } = {}) {
     return [

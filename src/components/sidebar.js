@@ -3,6 +3,7 @@ import html from 'nanohtml'
 import InputRange from 'components/input-range'
 import InputToggle from 'components/input-toggle'
 import OnionSkin from 'components/onion-skin'
+import PanoramasLauncher from 'components/panoramas-launcher'
 import raw from 'nanohtml/raw'
 import store from 'controllers/store'
 
@@ -65,6 +66,7 @@ export default class Sidebar extends DomComponent {
     ]
 
     this.refs.onionSkin = this.registerComponent(OnionSkin)
+    this.refs.panoramasLauncher = this.registerComponent(PanoramasLauncher)
 
     return html`
     <section class='sidebar'>
@@ -76,6 +78,9 @@ export default class Sidebar extends DomComponent {
       </div>
       <div class='sidebar__section'>
         ${this.refs.onionSkin.raw()}
+      </div>
+      <div class='sidebar__section'>
+        ${this.refs.panoramasLauncher.raw()}
       </div>
     </section>`
   }

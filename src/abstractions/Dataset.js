@@ -16,19 +16,18 @@ export default class Dataset {
 
     this.files = dataset.files
 
-    this.parseShapes(this.files['shapes'])
-    this.parseMap(this.files['map'])
-    this.path = new Path(this.points)
-  }
+    const shapesElement = [...raw(this.files.shapes)].find(el => el.nodeName === 'svg')
+    const mapElement = [...raw(this.files.map)].find(el => el.nodeName === 'svg')
 
-  parseShapes (shapes) {
-    const shapesElement = [...raw(shapes)].find(el => el.nodeName === 'svg')
-    const groups = shapesElement.querySelectorAll('g')
-    this.points = [...groups].map(group => new Point(group))
-  }
+    const svgGroups = shapesElement.querySelectorAll('g')
 
-  parseMap (map) {
-    const mapElement = [...raw(map)].find(el => el.nodeName === 'svg')
     this.map = new Map(mapElement)
+    this.features = JSON.parse(this.files.features)
+    this.panoramas = this.features.map(f => f.properties.panorama).filter(Boolean)
+    this.points = [...svgGroups].map((svgGroup, index) => {
+      const feature = this.features.find(f => +f.properties.gid === index)
+      return new Point(svgGroup, feature)
+    })
+    this.path = new Path(this.points)
   }
 }

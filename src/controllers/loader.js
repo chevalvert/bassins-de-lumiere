@@ -3,6 +3,7 @@ import rest from 'controllers/rest'
 import Dataset from 'abstractions/Dataset'
 import store from 'controllers/store'
 import error from 'controllers/error'
+import background from 'controllers/background-loader'
 
 const screen = new LogScreen({
   title: 'Chargement',
@@ -22,6 +23,8 @@ export default async () => {
     store.set('points', dataset.points)
     store.set('path', dataset.path)
     store.set('map', dataset.map)
+
+    background(...dataset.panoramas)
 
     screen.destroy()
   } catch (err) {

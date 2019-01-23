@@ -14,7 +14,6 @@ server.router.get('/configuration', rest((_, success) => success(configuration))
 
 server.router.get('/dataset', rest(async (req, success) => {
   // TODO: validate dataset
-
   const dataset = {
     path: makeAbsolute(configuration['dataset']),
     files: {}
@@ -27,12 +26,15 @@ server.router.get('/dataset', rest(async (req, success) => {
     dataset.files[key] = await fs.readFile(filepath, 'utf-8')
   }))
 
+  // NOTE: this register the last requeted dataset as the main route for all panorama images
+  server.app.use('/panoramas', server.express.static(path.join(dataset.path, 'panoramas')))
+
   return success(dataset)
 }))
 
-server.router.get('/dataset/pano/:id', rest(async (req, success) => {
-  const id = req.body.id
-  console.log('TODO', '/dataset/pano/:id', id)
+server.router.get('/panorama/:filename', rest(async (req, success) => {
+  const filename = req.body.filename
+  console.log('TODO', '/dataset/pano/:id', filename)
 }))
 
 // server.router.post('/test', rest((req, success) => {

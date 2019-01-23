@@ -1,11 +1,9 @@
 import 'whatwg-fetch'
+import getHost from 'utils/get-host'
 
 /* global fetch Headers */
 
-const port = window.configuration.host.port
-const address = window.location.hostname
-
-const restURL = endpoint => `http://${address}:${port}/api/${endpoint}`
+const restURL = endpoint => getHost() + '/api/' + endpoint
 
 const restFetch = async (endpoint, options) => {
   const url = restURL(endpoint)

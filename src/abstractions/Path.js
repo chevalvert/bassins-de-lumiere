@@ -25,13 +25,12 @@ export default class Path {
   }
 
   get all () { return this.points }
-  get current () {
-    const pointsIndexesRange = [
+  get current () { return this.points.slice(...this.currentPointsIndexesRange) }
+  get currentPointsIndexesRange () {
+    return [
       Math.floor(store.get('currentPointA') * this.points.length),
       Math.floor(store.get('currentPointB') * this.points.length)
     ].sort((a, b) => a - b)
-
-    return this.points.slice(...pointsIndexesRange)
   }
 
   lerp (t) {

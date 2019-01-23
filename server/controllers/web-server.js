@@ -5,6 +5,8 @@ const findFirstAvailableAddress = require('@server/utils/find-first-available-ne
 const path = require('path')
 const WebsocketServer = require('@server/controllers/websocket-server')
 
+const app = express()
+
 module.exports = class WebServer extends Emitter {
   constructor ({
     port = 8888,
@@ -16,7 +18,6 @@ module.exports = class WebServer extends Emitter {
     this.port = port
     this.dist = dist
 
-    const app = express()
     this.router = express.Router()
 
     app.use(express.static(dist, { extensions: ['html'] }))
@@ -36,4 +37,6 @@ module.exports = class WebServer extends Emitter {
   }
 
   get ws () { return this.websocketServer }
+  get app () { return app }
+  get express () { return express }
 }
