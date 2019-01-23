@@ -5,26 +5,29 @@
   left: 0;
   height: 100%;
   width: auto;
-
   line-height: 0;
 
   svg {
     width: auto;
     height: 100%;
-    background: #353535;
+    // background: #353535;
+    background: #161616;
 
     #eau {
-      fill: rgba(255, 255, 255, 0.3);
+      fill: #555;
     }
 
     #bati {
-      fill: #444444;
+      // fill: #444444;
+      display: none;
     }
 
     #parcelle {
-      fill: none;
-      stroke: #161616;
+      // fill: none;
+      // stroke: #161616;
       stroke-width: 1px;
+      stroke: #222;
+      fill: #353535;
     }
   }
 

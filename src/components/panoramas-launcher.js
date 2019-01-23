@@ -8,6 +8,7 @@ export default class PanoramasLauncher extends DomComponent {
 
     store.watch('minProgressPercent', this.update)
     store.watch('maxProgressPercent', this.update)
+    this.update()
   }
 
   willUnmount () {
@@ -41,6 +42,10 @@ export default class PanoramasLauncher extends DomComponent {
       for (let i = path.currentPointsIndexesRange[0]; i <= path.currentPointsIndexesRange[1]; i++) {
         this.showPanorama(i)
       }
+
+      this.refs.base.scrollLeft = path.currentPointsIndexesRange[0] !== path.currentPointsIndexesRange[1]
+        ? 20
+        : 0
     })
   }
 

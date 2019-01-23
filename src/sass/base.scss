@@ -1,6 +1,8 @@
 * { box-sizing: border-box; }
 html { font-size: 62.5%; }
 body {
+  @include no-select;
+
   font-family: 'Prophet', sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
