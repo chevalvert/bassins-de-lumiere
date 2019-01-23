@@ -9,26 +9,16 @@ import Point from 'abstractions/Point'
 import raw from 'nanohtml/raw'
 
 export default class Dataset {
-  static get REQUIRED_FILES () {
-    return window.configuration['datasetRequiredFiles']
-  }
-
-  constructor (files) {
-    this.files = files
-    if (!this.checkIntegrity()) return
-
-    this.parseShapes(files['shapes.svg'])
-    this.parseMap(files['map.svg'])
-    this.path = new Path(this.points)
-  }
-
-  checkIntegrity (files = this.files) {
-    Dataset.REQUIRED_FILES.forEach(filename => {
-      if (!files.hasOwnProperty(filename) || !files[filename]) {
-        throw new ReferenceError('Missing file in dataset: ' + filename)
-      }
+  constructor (dataset) {
+    Object.entries(dataset.package).forEach(([key, value]) => {
+      this[key] = value
     })
-    return true
+
+    this.files = dataset.files
+
+    this.parseShapes(this.files['shapes'])
+    this.parseMap(this.files['map'])
+    this.path = new Path(this.points)
   }
 
   parseShapes (shapes) {

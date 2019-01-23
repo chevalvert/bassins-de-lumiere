@@ -11,7 +11,7 @@ const viewer = new Kaleidoscope.Image({
   source: 'datas/vert1/spheres/63.png',
   container: document.body
 })
-viewer.render()
+// viewer.render()
 
 const app = new App()
 

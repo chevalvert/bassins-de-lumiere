@@ -7,8 +7,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/serve.js",
-    "build": "cross-env NODE_ENV=production node scripts/build.js",
-    "build-dataset": "cross-env NODE_ENV=production node scripts/build-dataset.js"
+    "build": "cross-env NODE_ENV=production node scripts/build.js"
   },
   "repository": {
     "type": "git",

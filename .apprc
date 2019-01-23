@@ -1,17 +1,10 @@
 {
   "host": {
     "port": 8888,
-    "dist": "build",
-    "datas": "static/datas"
+    "dist": "build"
   },
 
-  "dataset": "vert1",
-  "datasetRequiredFiles": [
-    "features.json",
-    "map.svg",
-    "shapes.svg"
-  ],
-
+  "dataset": "/Users/RNO/Desktop/vert1",
   "onionSkinsOpacityCutoffFactor": 6,
   "onionSkinsMaskOpacity": 0.9,
 
