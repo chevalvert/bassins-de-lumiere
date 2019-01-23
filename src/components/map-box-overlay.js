@@ -14,6 +14,8 @@ export default class MapBoxOverlay extends Canvas {
     store.watch('currentPointB', this.update)
     store.watch('path', this.update)
     this.update()
+
+    this.getStyle()
   }
 
   willUnmount () {
@@ -28,14 +30,30 @@ export default class MapBoxOverlay extends Canvas {
     this.update()
   }
 
+  getStyle () {
+    const style = window.getComputedStyle(this.refs.base)
+    this.style = {
+      default: {
+        strokeStyle: style.getPropertyValue('--path-default-stroke'),
+        lineWidth: parseInt(style.getPropertyValue('--path-default-stroke-width').trim())
+      },
+      selected: {
+        strokeStyle: style.getPropertyValue('--path-selected-stroke'),
+        lineWidth: parseInt(style.getPropertyValue('--path-selected-stroke-width').trim())
+      }
+    }
+  }
+
   update () {
+    if (!window.isProduction) this.getStyle()
     const path = store.get('path')
+
     window.requestAnimationFrame(() => {
       this.clear()
       this.context.lineCap = 'round'
       this.context.lineJoin = 'round'
-      this.renderPath(path.all, window.configuration['mapPathDefaultStyle'])
-      this.renderPath(path.current, window.configuration['mapPathSelectedStyle'])
+      this.renderPath(path.all, this.style['default'])
+      this.renderPath(path.current, this.style['selected'])
     })
   }
 

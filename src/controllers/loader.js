@@ -9,7 +9,7 @@ const screen = new LogScreen({
   state: 'log'
 })
 
-export default async (callback) => {
+export default async () => {
   try {
     screen.mount(document.body)
 
@@ -24,7 +24,6 @@ export default async (callback) => {
     store.set('map', dataset.map)
 
     screen.destroy()
-    callback()
   } catch (err) {
     error(err)
   }

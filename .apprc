@@ -8,8 +8,7 @@
   "onionSkinsOpacityCutoffFactor": 6,
   "onionSkinsMaskOpacity": 0.9,
 
-  "mapPathDefaultStyle": { "strokeStyle": "black", "lineWidth": 2 },
-  "mapPathSelectedStyle": { "strokeStyle": "black", "lineWidth": 10 },
+  "iddleAfter": 3000,
 
   "pathHandlesAdaptiveEasingRange": [1, 0.09],
 

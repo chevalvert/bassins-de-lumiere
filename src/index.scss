@@ -4,7 +4,7 @@
 
 $white: #FFFFFF;
 $black: #000000;
-$accent: #0000FF;
+$accent: #0700db;
 $gray: gray;
 
 $gutter: 2rem;
@@ -19,4 +19,5 @@ $gutter: 2rem;
 @import 'components/map-box-overlay';
 @import 'components/onion-skin';
 @import 'components/onion-skin-mask';
+@import 'components/panorama';
 @import 'components/sidebar';
