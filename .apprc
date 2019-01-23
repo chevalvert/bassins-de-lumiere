@@ -9,6 +9,9 @@
   "onionSkinsMaskOpacity": 0.9,
 
   "iddleAfter": 3000,
+  "iddlerSpeedRange": [0.0001, 0.01],
+  "iddlersMaxLength": 5,
+  "iddlersRandomSpawnIntervalRange": [1000, 3000],
 
   "pathHandlesAdaptiveEasingRange": [1, 0.09],
 

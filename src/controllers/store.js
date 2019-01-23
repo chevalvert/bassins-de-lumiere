@@ -4,7 +4,9 @@ const events = new Emitter()
 const NS = '__STORE.'
 const stored = {}
 
-window.store = stored
+if (!window.isProduction) {
+  window.store = stored
+}
 
 export default {
   watch: (k, cb, { immediate = false } = {}) => {

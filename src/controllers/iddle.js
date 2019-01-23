@@ -1,11 +1,12 @@
 import store from 'controllers/store'
+import 'controllers/iddlers'
 
-let timer
+let waitForIddleness
 
 function reset () {
   store.set('iddle', false)
-  clearTimeout(timer)
-  timer = setTimeout(() => {
+  clearTimeout(waitForIddleness)
+  waitForIddleness = setTimeout(() => {
     store.set('iddle', true)
   }, window.configuration['iddleAfter'])
 }
