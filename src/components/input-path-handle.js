@@ -56,12 +56,10 @@ export default class InputHandle extends Input {
 
   startMove (e) {
     e.preventDefault()
-    // TODO: handle multitouch correctly
+
+    // TODO: handle multitouch
     this.moving = true
-    this.touch = e.changedTouches && e.changedTouches[0].identifier
-    this.target = this.touch
-      ? [e.changedTouches[0].pageX, e.changedTouches[0].pageY]
-      : [e.pageX, e.pageY]
+    this.target = [e.pageX, e.pageY]
 
     raf.add(this.targetCursor)
     this.addClass('is-active')
@@ -79,31 +77,23 @@ export default class InputHandle extends Input {
 
   move (e) {
     if (!this.moving) return
-      this.target = [e.pageX, e.pageY]
-
-    // TODO: handle multitouch correctly
-    if (!e.changedTouches || !this.touch) return
-    for (let i = 0; i < e.changedTouches.length; i++) {
-      const touch = e.changedTouches[i]
-      if (touch.target !== this.touch) continue
-      this.target = [touch.pageX, touch.pageY]
-    }
+    // TODO: handle multitouch
+    this.target = [e.pageX, e.pageY]
   }
 
   targetCursor () {
     const path = store.get('path')
-    const width = this.refs.base.parentNode.clientWidth
-    const height = this.refs.base.parentNode.clientHeight
+    const { width, height, x, y } = this.refs.base.parentNode.getBoundingClientRect()
 
     let result
     let shortestDistance = Number.POSITIVE_INFINITY
-    for (let t = 0; t < 1; t += 0.01) {
+    for (let t = 0; t <= 1.01; t += 0.01) {
       const normalizedCandidate = path.lerp(t)
       const candidate = [
         normalizedCandidate[0] * width,
         normalizedCandidate[1] * height
       ]
-      const distance = distSq(candidate, this.target)
+      const distance = distSq(candidate, [this.target[0] - x, this.target[1] - y])
       if (distance < shortestDistance) {
         shortestDistance = distance
         result = t

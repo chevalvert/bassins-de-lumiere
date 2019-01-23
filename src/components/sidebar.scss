@@ -1,9 +1,8 @@
 .sidebar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  width: 30vw;
+  @include no-select;
+  position: relative;
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -18,7 +17,21 @@
     font-weight: normal;
   }
 
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   &__section {
     margin: 2rem 0;
+  }
+
+  &__section#panoramasLauncher {
+    display: flex;
+    flex-grow: 2;
+    margin-bottom: 0;
+    line-height: 0;
+    font-size: 0;
   }
 }

@@ -22,28 +22,29 @@ export default class LogScreen extends DomComponent {
     return html`
       <section class='log-screen ${this.className}' data-state='${this.state}'>
         <div class='log-screen__content'>
-          <h1 class='log-screen__title'>${this.title}</h1>
+          <h1 class='log-screen__title'>${raw(this.title)}</h1>
           ${this.refs.message}
         </div>
       </section>`
   }
 
   update () {
-    if (!this.mounted) return
     window.requestAnimationFrame(() => {
+      if (!this.mounted) return
       this.refs.message.innerHTML = this.message
       this.refs.base.setAttribute('data-state', this.state)
     })
   }
 
-  setMessage (message, state) {
+  setMessage (message, { state = this.state, progress = 0 } = {}) {
     this.message = message
     this.state = state
+    this.refs.base.style.setProperty('--progress', progress)
     this.update()
   }
 
-  log (message) { this.setMessage(message, 'log') }
-  success (message) { this.setMessage(message, 'success') }
-  warning (message) { this.setMessage(message, 'warning') }
-  error (message) { this.setMessage(message, 'error') }
+  log (message) { this.setMessage(message, { state: 'log' }) }
+  success (message) { this.setMessage(message, { state: 'success' }) }
+  warning (message) { this.setMessage(message, { state: 'warning' }) }
+  error (message) { this.setMessage(message, { state: 'error' }) }
 }

@@ -3,6 +3,8 @@ import 'controllers/iddlers'
 
 let waitForIddleness
 
+// TODO: no iddle when on panorama
+
 function reset () {
   store.set('iddle', false)
   clearTimeout(waitForIddleness)
@@ -11,9 +13,8 @@ function reset () {
   }, window.configuration['iddleAfter'])
 }
 
-store.watch('currentPointA', reset)
-store.watch('currentPointB', reset)
-store.watch('currentPointC', reset)
+store.watch('minProgressPercent', reset)
+store.watch('maxProgressPercent', reset)
 store.watch('heading', reset)
 store.watch('aperture', reset)
 

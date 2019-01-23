@@ -6,11 +6,6 @@ import store from 'controllers/store'
 import { normalize } from 'missing-math'
 
 export default class OnionSkin extends DomComponent {
-  constructor () {
-    super()
-    this.visibleSkinsIndexesRange = []
-  }
-
   render () {
     this.refs.skins = store.get('points').map(point =>
       html`
@@ -35,36 +30,26 @@ export default class OnionSkin extends DomComponent {
   }
 
   didMount () {
-    // DEBUG: performance
-    store.watch('currentPointA', index => {
-      this.visibleSkinsIndexesRange[0] = index
-      this.update()
-    }, { immediate: true })
+    this.bindFuncs(['update'])
 
-    store.watch('currentPointB', index => {
-      this.visibleSkinsIndexesRange[1] = index
-      this.update()
-    }, { immediate: true })
-
-    store.watch('currentPointC', index => {
-      store.set('currentPointA', index)
-      store.set('currentPointB', index)
-    })
+    store.watch('minProgressPercent', this.update)
+    store.watch('maxProgressPercent', this.update)
+    this.update()
   }
 
   update () {
+    const path = store.get('path')
     window.requestAnimationFrame(() => {
       this.hideAllSkins()
 
       const cutoff = window.configuration['onionSkinsOpacityCutoffFactor']
-      const range = [...this.visibleSkinsIndexesRange]
-        .sort((a, b) => a - b)
-        .map(v => Math.floor(v * this.refs.skins.length))
-      for (let i = range[0]; i <= range[1]; i++) {
-        const opacity = range[0] < range[1]
-          ? normalize(i, range[0], range[1]) ** cutoff
-          : 1
-        this.showSkin(i, { opacity })
+      const opacity = i => path.currentPointsIndexesRange[0] < path.currentPointsIndexesRange[1]
+        ? normalize(i, ...path.currentPointsIndexesRange) ** cutoff
+        : 1
+
+      // DEBUG: performance
+      for (let i = path.currentPointsIndexesRange[0]; i <= path.currentPointsIndexesRange[1]; i++) {
+        this.showSkin(i, { opacity: opacity(i) })
       }
     })
   }

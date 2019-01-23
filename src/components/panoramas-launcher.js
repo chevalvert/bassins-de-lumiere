@@ -6,23 +6,53 @@ export default class PanoramasLauncher extends DomComponent {
   didMount () {
     this.bindFuncs(['update'])
 
-    store.watch('currentPointA', this.update)
-    store.watch('currentPointB', this.update)
-    store.watch('currentPointC', this.update)
+    store.watch('minProgressPercent', this.update)
+    store.watch('maxProgressPercent', this.update)
+  }
+
+  willUnmount () {
+    store.unwatch('minProgressPercent', this.update)
+    store.unwatch('maxProgressPercent', this.update)
   }
 
   render () {
+    this.refs.panoramas = store.get('points').filter(p => p.hasPanorama).map(p =>
+      html`
+      <li class='panoramas-launcher__panorama' id='panorama_${p.index}'>
+        <a href='${p.panorama.src}' onclick='${e => e.preventDefault() || store.set('panorama', p)}'>
+          ${p.panorama}
+        </a>
+      </li>`
+    )
+
     return html`
     <div class='panoramas-launcher'>
-      foo
+      <ul class='panoramas-launcher__panoramas'>
+        ${this.refs.panoramas}
+      </ul>
     </div>`
   }
 
   update () {
-    // const pointsIndexesRange = [
-    //   Math.floor(store.get('currentPointA') * this.points.length),
-    //   Math.floor(store.get('currentPointB') * this.points.length)
-    // ].sort((a, b) => a - b)
-    // this.refs
+    const path = store.get('path')
+
+    window.requestAnimationFrame(() => {
+      this.hideAllPanoramas()
+      for (let i = path.currentPointsIndexesRange[0]; i <= path.currentPointsIndexesRange[1]; i++) {
+        this.showPanorama(i)
+      }
+    })
+  }
+
+  hideAllPanoramas () {
+    this.refs.panoramas.forEach(el => {
+      el.style.display = 'none'
+    })
+  }
+
+  showPanorama (index) {
+    const panorama = document.getElementById('panorama_' + index)
+    if (!panorama) return
+    panorama.style.display = 'inline-block'
   }
 }

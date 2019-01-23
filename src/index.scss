@@ -1,5 +1,8 @@
 @import 'sass/fonts';
 @import 'sass/reset';
+
+$ease: cubic-bezier(0.250, 0.100, 0.250, 1.000);
+
 @import 'sass/helpers';
 
 $white: #FFFFFF;
@@ -10,6 +13,7 @@ $gray: gray;
 $gutter: 2rem;
 
 @import 'sass/base';
+@import 'sass/layout';
 
 @import 'components/input-handle';
 @import 'components/input-range';
@@ -22,3 +26,4 @@ $gutter: 2rem;
 @import 'components/panorama';
 @import 'components/panoramas-launcher';
 @import 'components/sidebar';
+@import 'components/sidebar-panorama-details';

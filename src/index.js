@@ -1,3 +1,4 @@
+import 'controllers/single-point-mode'
 import App from 'layouts/app'
 import iddle from 'controllers/iddle'
 import load from 'controllers/loader'

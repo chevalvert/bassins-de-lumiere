@@ -1,65 +1,25 @@
 import DomComponent from 'abstractions/DomComponent'
 import html from 'nanohtml'
 import InputRange from 'components/input-range'
-import InputToggle from 'components/input-toggle'
 import OnionSkin from 'components/onion-skin'
 import PanoramasLauncher from 'components/panoramas-launcher'
-import raw from 'nanohtml/raw'
-import store from 'controllers/store'
+import SidebarPanoramaDetails from 'components/sidebar-panorama-details'
 
 export default class Sidebar extends DomComponent {
-  didMount () {
-    this.bindFuncs(['toggleSinglePointMode'])
-    store.watch('singlePointMode', this.toggleSinglePointMode)
-  }
-
-  toggleSinglePointMode (value = false) {
-    this.refs.inputs[1].refs.base.style.display = !value ? '' : 'none'
-    this.refs.inputs[2].refs.base.style.display = !value ? '' : 'none'
-    this.refs.inputs[3].refs.base.style.display = value ? '' : 'none'
-  }
-
   render () {
-    // TODO: better storage of inputs for later use
-    this.refs.inputs = [
-      this.registerComponent(InputToggle, {
-        label: 'single point mode',
-        value: false,
-        storeKey: 'singlePointMode'
-      }),
+    this.refs.sliders = [
       this.registerComponent(InputRange, {
-        label: 'test slider "from"',
-        storeKey: 'currentPointA',
-        value: 0,
-        range: [0, 1],
-        step: 0.01
-      }),
-      this.registerComponent(InputRange, {
-        label: 'test slider "to"',
-        storeKey: 'currentPointB',
-        value: 1,
-        range: [0, 1],
-        step: 0.01
-      }),
-      this.registerComponent(InputRange, {
-        label: 'test slider "one point"',
-        storeKey: 'currentPointC',
-        value: 1,
-        range: [0, 1],
-        step: 0.01
-      }),
-      this.registerComponent(InputRange, {
-        label: 'test slider "aperture"',
+        label: 'ouverture',
         storeKey: 'aperture',
-        value: 0.5,
+        value: window.configuration['defaultAperture'],
         range: [0, 1],
         step: 1 / 360,
         fill: true
       }),
       this.registerComponent(InputRange, {
-        label: 'test slider "heading"',
+        label: 'direction',
         storeKey: 'heading',
-        value: 1,
+        value: window.configuration['defaultHeading'],
         range: [0, 1],
         step: 1 / 360
       })
@@ -67,20 +27,21 @@ export default class Sidebar extends DomComponent {
 
     this.refs.onionSkin = this.registerComponent(OnionSkin)
     this.refs.panoramasLauncher = this.registerComponent(PanoramasLauncher)
+    this.refs.panoramaDetails = this.registerComponent(SidebarPanoramaDetails)
 
     return html`
     <section class='sidebar'>
-      <h1 class='sidebar__title'>
-        ${raw(window.configuration.html.title)}
-      </h1>
-      <div class='sidebar__section'>
-        ${this.refs.inputs.map(slider => slider.raw())}
-      </div>
-      <div class='sidebar__section'>
-        ${this.refs.onionSkin.raw()}
-      </div>
-      <div class='sidebar__section'>
-        ${this.refs.panoramasLauncher.raw()}
+      ${this.refs.panoramaDetails.raw()}
+      <div class='sidebar__sections'>
+        <div class='sidebar__section'>
+          ${this.refs.onionSkin.raw()}
+        </div>
+        <div class='sidebar__section'>
+          ${this.refs.sliders.map(slider => slider.raw())}
+        </div>
+        <div class='sidebar__section' id='panoramasLauncher'>
+          ${this.refs.panoramasLauncher.raw()}
+        </div>
       </div>
     </section>`
   }

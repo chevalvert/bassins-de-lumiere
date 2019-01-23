@@ -1,5 +1,7 @@
-import getSvgPolygonPoints from 'utils/get-svg-polygon-points'
 import boundingBox from 'utils/bounding-box'
+import cache from 'controllers/cache'
+import getSvgPolygonPoints from 'utils/get-svg-polygon-points'
+import host from 'utils/host'
 import normalize2d from 'utils/normalize-2d-point'
 
 export default class Point {
@@ -30,6 +32,9 @@ export default class Point {
 
   get position () { return this.aabb.center }
   get hasPanorama () { return this.features && this.features.properties && !!this.features.properties.panorama }
+  get panorama () {
+    return cache.get(host + '/' + this.features.properties.panorama)
+  }
 
   createViewBox ({ padding = 0 } = {}) {
     return [

@@ -22,6 +22,7 @@ export default {
 
   get: k => stored[k],
   set: (k, val) => {
+    if (!k) return
     stored[k] = val
     events.emit(NS + k, val)
     return val

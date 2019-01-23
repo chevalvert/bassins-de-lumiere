@@ -28,8 +28,8 @@ export default class Path {
   get current () { return this.points.slice(...this.currentPointsIndexesRange) }
   get currentPointsIndexesRange () {
     return [
-      Math.floor(store.get('currentPointA') * this.points.length),
-      Math.floor(store.get('currentPointB') * this.points.length)
+      Math.floor(store.get('minProgressPercent') * (this.points.length - 1)),
+      Math.floor(store.get('maxProgressPercent') * (this.points.length - 1))
     ].sort((a, b) => a - b)
   }
 

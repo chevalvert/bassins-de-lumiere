@@ -20,3 +20,12 @@ body.has-grabbing {
   cursor: move;
   cursor: grabbing;
 }
+
+main {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

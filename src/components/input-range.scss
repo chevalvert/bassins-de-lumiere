@@ -9,8 +9,8 @@
   z-index: 1;
   cursor: pointer;
   background: $white;
-  height: 2em;
-  width: 2em;
+  height: 3rem;
+  width: 3rem;
   cursor: pointer;
   cursor: ew-resize;
 
@@ -20,7 +20,6 @@
 }
 
 .input-range {
-
   &__wrapper {
     position: relative;
   }
@@ -34,6 +33,10 @@
     // NOTE: the width is set in @components/input-range
     width: 0;
     background: $white;
+  }
+
+  &__label {
+    font-size: small;
   }
 
   &__input {

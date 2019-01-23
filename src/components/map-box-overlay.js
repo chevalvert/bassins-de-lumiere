@@ -10,8 +10,8 @@ export default class MapBoxOverlay extends Canvas {
   didMount () {
     super.didMount()
     this.bindFuncs(['update'])
-    store.watch('currentPointA', this.update)
-    store.watch('currentPointB', this.update)
+    store.watch('minProgressPercent', this.update)
+    store.watch('maxProgressPercent', this.update)
     store.watch('path', this.update)
     this.update()
 
@@ -20,8 +20,8 @@ export default class MapBoxOverlay extends Canvas {
 
   willUnmount () {
     super.willUnmount()
-    store.unwatch('currentPointA', this.update)
-    store.unwatch('currentPointB', this.update)
+    store.unwatch('minProgressPercent', this.update)
+    store.unwatch('maxProgressPercent', this.update)
     store.unwatch('path', this.update)
   }
 
