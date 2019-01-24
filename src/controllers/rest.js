@@ -1,17 +1,21 @@
 import 'whatwg-fetch'
+import host from 'utils/host'
 
 /* global fetch Headers */
 
-const port = window.configuration.host.port
-const address = window.location.hostname
-
-const restURL = endpoint => `http://${address}:${port}/api/${endpoint}`
+const restURL = endpoint => host + '/api/' + endpoint
 
 const restFetch = async (endpoint, options) => {
   const url = restURL(endpoint)
+
   const response = await fetch(url, options)
-  if (response && response.ok) return validateJSONResponse(response)
-  throw Error(`${url} (${response.statusText})`)
+  if (!response || !response.ok) throw Error(`${url} (${response.statusText})`)
+
+  const json = await validateJSONResponse(response)
+
+  // SEE @server/utils/decorate-rest-action
+  if (json.error) throw Error(`${url} (${json.error})`)
+  return json.data
 }
 
 const validateJSONResponse = response => {

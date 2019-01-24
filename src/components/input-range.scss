@@ -1,0 +1,76 @@
+@mixin input-range-track {
+  cursor: pointer;
+  background: $gray;
+  height: 100%;
+}
+
+@mixin input-range-thumb {
+  @include easing(300ms, opacity);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  background: $white;
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  cursor: ew-resize;
+
+  &:hover, &:active {
+    background: $accent;
+  }
+}
+
+@mixin input-range-thumb--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.input-range {
+  &__wrapper {
+    position: relative;
+  }
+
+  &__filler {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    // NOTE: the width is set in @components/input-range
+    width: 0;
+    background: $white;
+  }
+
+  &__label {
+    font-size: small;
+  }
+
+  &__input {
+    appearance: none;
+    background: none;
+    display: block;
+    width: 100%;
+
+    &:focus { outline: none; }
+
+    &::-webkit-slider-runnable-track { @include input-range-track; }
+    &::-webkit-slider-thumb {
+      @include input-range-thumb;
+      -webkit-appearance: none;
+    }
+
+    &::-moz-range-track { @include input-range-track; }
+    &::-moz-range-thumb { @include input-range-thumb; }
+
+    &::-ms-track { @include input-range-track; }
+    &::-ms-thumb  { @include input-range-thumb; }
+  }
+
+  &.is-disabled {
+    pointer-events: none;
+  }
+
+  &.is-disabled &__input::-webkit-slider-thumb { @include input-range-thumb--disabled; }
+  &.is-disabled &__input::-moz-range-thumb { @include input-range-thumb--disabled; }
+  &.is-disabled &__input::-ms-thumb { @include input-range-thumb--disabled; }
+}

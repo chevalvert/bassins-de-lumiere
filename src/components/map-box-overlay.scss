@@ -1,0 +1,6 @@
+.map-box-overlay {
+  --path-default-stroke: #{$white};
+  --path-default-stroke-width: 4px;
+  --path-selected-stroke: #{$accent};
+  --path-selected-stroke-width: 5px;
+}

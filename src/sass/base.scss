@@ -1,15 +1,41 @@
 * { box-sizing: border-box; }
 html { font-size: 62.5%; }
 body {
-  font-family: 'Open Sans', sans-serif;
+  @include no-select;
+
+  font-family: 'Prophet', sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  min-height: 100%;
 
   font-size: 2rem;
   line-height: 1.6em;
   margin: 0;
   padding: 0;
+
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body.has-grabbing {
+  cursor: move;
+  cursor: grabbing;
+}
+
+body.is-loading .layout-left::after {
+  @include spinner(2rem, 0.2rem, $white, transparent, 1s);
+  position: absolute;
+  left: 50%;
+  top: $gutter;
+  margin-left: -1rem;
+}
+
+main {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

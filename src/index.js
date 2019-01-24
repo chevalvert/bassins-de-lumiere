@@ -1,28 +1,19 @@
-import ws from 'controllers/websocket'
-import rest from 'controllers/rest'
+import 'controllers/single-point-mode'
+import App from 'layouts/app'
+import iddle from 'controllers/iddle'
+import load from 'controllers/loader'
 
-Promise.resolve()
-  .then(() => rest.get('configuration'))
-  .then(configuration => {
-    window.configuration = configuration
-    document.title = `[${window.configuration.package.version}] ${document.title}`
-    console.log(configuration)
-  })
-  .catch(console.error)
+if (!window.isProduction) {
+  require('fps-indicator')({ position: 'bottom-left' })
+}
 
-ws.on('echo', data => console.log(data))
+const app = new App()
 
-window.addEventListener('click', async () => {
-  try {
-    const response = await rest.post('test', {
-      test: true
-    })
-    console.log(response)
-  } catch (err) {
-    console.error(err)
-  }
+load().then(() => {
+  document.title = `${document.title} – ${window.configuration.package.version}`
 
-  // ws.send('echo', {
-  //   foo: 'bar'
-  // })
+  app.mount(document.body)
+  console.log('[DEBUG] App is ready')
+
+  iddle.reset()
 })

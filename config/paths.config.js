@@ -19,6 +19,7 @@ module.exports = {
   static: path.join(__dirname, '..', 'static'),
 
   // Node-Resolve aliases
+  abstractions: path.join(__dirname, '..', 'src', 'abstractions'),
   components: path.join(__dirname, '..', 'src', 'components'),
   controllers: path.join(__dirname, '..', 'src', 'controllers'),
   utils: path.join(__dirname, '..', 'src', 'utils'),

@@ -2,5 +2,23 @@
   "host": {
     "port": 8888,
     "dist": "build"
+  },
+
+  "dataset": "/Users/RNO/Desktop/vert1",
+
+  "onionSkinsOpacityCutoffFactor": 6,
+  "onionSkinsMaskOpacity": 0.9,
+  "defaultAperture": 1,
+  "defaultHeading": 0,
+  "iddleAfter": 3000,
+  "iddlerSpeedRange": [0.0001, 0.01],
+  "iddlersMaxLength": 5,
+  "iddlersRandomSpawnIntervalRange": [1000, 3000],
+  "panoramaInitialPitch": 0,
+  "panoramaHeadingOffset": 180,
+  "pathHandlesAdaptiveEasingRange": [1, 0.09],
+
+  "html": {
+    "title": "bassins<br>de&nbsp;lumière"
   }
 }

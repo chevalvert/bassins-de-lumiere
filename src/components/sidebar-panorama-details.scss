@@ -1,0 +1,32 @@
+@keyframes sidebar-panorama-details--fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sidebar-panorama-details {
+  position: absolute;
+  top: 30vw;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: $black;
+  z-index: 10;
+  padding: $gutter;
+
+  animation: sidebar-panorama-details--fadeIn 300ms $ease;
+
+  &__close {
+    position: fixed;
+    right: $gutter;
+    top: $gutter;
+    font-size: 6rem;
+    text-decoration: none;
+    color: $white;
+  }
+
+  &__properties {}
+
+  &__properties li::before {
+    content: attr(data-label)': ';
+  }
+}

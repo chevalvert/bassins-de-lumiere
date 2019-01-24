@@ -1,0 +1,37 @@
+.sidebar {
+  @include no-select;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  color: $white;
+  background: $black;
+
+  padding: $gutter;
+
+  &__title {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: normal;
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__section {
+    margin: 2rem 0;
+  }
+
+  &__section#panoramasLauncher {
+    display: flex;
+    flex-grow: 2;
+    margin-bottom: 0;
+    line-height: 0;
+    font-size: 0;
+  }
+}

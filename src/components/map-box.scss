@@ -1,0 +1,86 @@
+.map-box {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  line-height: 0;
+
+  svg {
+    width: auto;
+    height: 100%;
+    background: #161616;
+
+    #eau {
+      fill: #555;
+    }
+
+    #bati {
+      // fill: #444444;
+      display: none;
+    }
+
+    #parcelle {
+      // fill: none;
+      // stroke: #161616;
+      stroke-width: 1px;
+      stroke: #222;
+      fill: $gray;
+    }
+  }
+
+  &__overlay,
+  &__handles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__single-point-mode-toggler {
+    position: fixed;
+    right: calc(30vw + #{$gutter});
+    top: $gutter;
+
+    .input-toggle {
+      &__output {
+        border: none;
+        background: none;
+        overflow: visible;
+      }
+
+      &__output::before {
+        @include easing(300ms, transform);
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        background: rgba($white, 0.75);
+        border-radius: 100%;
+        transform: translateX(-33%) !important;
+      }
+
+      &__output::after {
+        @include easing(300ms, transform);
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        background: rgba($white, 0.75);
+        border-radius: 100%;
+        transform: translateX(33%) !important;
+      }
+
+      &__input:checked + .input-toggle__output::before,
+      &__input:checked + .input-toggle__output::after {
+        transform: none !important;
+      }
+    }
+  }
+}
