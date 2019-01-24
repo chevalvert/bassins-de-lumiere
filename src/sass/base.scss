@@ -23,6 +23,14 @@ body.has-grabbing {
   cursor: grabbing;
 }
 
+body.is-loading .layout-left::after {
+  @include spinner(2rem, 0.2rem, $white, transparent, 1s);
+  position: absolute;
+  left: 50%;
+  top: $gutter;
+  margin-left: -1rem;
+}
+
 main {
   position: fixed;
   display: flex;

@@ -19,3 +19,25 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+@mixin spinner ($size: 5rem, $thickness: 1rem, $foreground: $white, $background: transparent, $speed: 1s) {
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  content: '';
+
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: $size - $thickness * 2;
+  height: $size - $thickness * 2;
+
+  border: $thickness solid $background;
+  border-top: $thickness solid $foreground;
+  border-left: $thickness solid $foreground;
+  border-radius: 50%;
+  animation: spin $speed linear infinite;
+}

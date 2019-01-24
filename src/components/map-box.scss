@@ -10,7 +10,6 @@
   svg {
     width: auto;
     height: 100%;
-    // background: #353535;
     background: #161616;
 
     #eau {
@@ -27,7 +26,7 @@
       // stroke: #161616;
       stroke-width: 1px;
       stroke: #222;
-      fill: #353535;
+      fill: $gray;
     }
   }
 
