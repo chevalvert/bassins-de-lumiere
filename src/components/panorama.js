@@ -5,7 +5,7 @@ import store from 'controllers/store'
 import { radians } from 'missing-math'
 import { raf } from '@internet/raf'
 
-export default class SidebarPanoramaDetails extends DomComponent {
+export default class Panorama extends DomComponent {
   didMount () {
     this.bindFuncs(['load', 'spy'])
     store.watch('panorama', this.load)
