@@ -60,6 +60,9 @@ export default class InputHandle extends Input {
     this.moving = true
     this.target = [e.pageX, e.pageY]
 
+    // NOTE: getting boudingClientRect here rather than in raf to improve perf
+    this.containerClientRect = this.refs.base.parentNode.getBoundingClientRect()
+
     raf.add(this.targetCursor)
     this.addClass('is-active')
     document.body.classList.add('has-grabbing')
@@ -82,7 +85,7 @@ export default class InputHandle extends Input {
 
   targetCursor () {
     const path = store.get('path')
-    const { width, height, left, top } = this.refs.base.parentNode.getBoundingClientRect()
+    const { width, height, left, top } = this.containerClientRect
 
     let result
     let shortestDistance = Number.POSITIVE_INFINITY
