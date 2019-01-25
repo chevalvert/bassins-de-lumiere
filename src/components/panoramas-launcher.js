@@ -1,3 +1,4 @@
+import debounce from 'utils/debounce'
 import DomComponent from 'abstractions/DomComponent'
 import html from 'nanohtml'
 import store from 'controllers/store'
@@ -5,6 +6,7 @@ import store from 'controllers/store'
 export default class PanoramasLauncher extends DomComponent {
   didMount () {
     this.bindFuncs(['update'])
+    this.update = debounce(this.update.bind(this), window.configuration['panoramasLauncherUpdaterDebounceDelay'])
 
     store.watch('minProgressPercent', this.update)
     store.watch('maxProgressPercent', this.update)

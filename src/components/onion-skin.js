@@ -38,8 +38,8 @@ export default class OnionSkin extends DomComponent {
   }
 
   update () {
-    const path = store.get('path')
     window.requestAnimationFrame(() => {
+      const path = store.get('path')
       this.hideAllSkins()
 
       const cutoff = window.configuration['onionSkinsOpacityCutoffFactor']

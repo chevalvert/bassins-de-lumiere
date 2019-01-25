@@ -1,10 +1,14 @@
+import cache from 'controllers/cache'
+import host from 'utils/host'
 import normalize2d from 'utils/normalize-2d-point'
 
 export default class Map {
-  constructor (svgElement) {
+  constructor (svgElement, { backgroundUrl } = {}) {
     this.element = svgElement
     if (!this.element) throw new Error('Badly formatted svg group')
     this.element.setAttribute('vector-effect', 'non-scaling-stroke')
+
+    this.background = cache.get(host + '/' + backgroundUrl)
 
     const viewBox = this.element.getAttribute('viewBox')
     if (!viewBox) throw new Error('Map svg must contain a viewBox attribute')

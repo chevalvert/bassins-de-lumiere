@@ -1,6 +1,7 @@
 import * as Kaleidoscope from 'kaleidoscopejs'
 import DomComponent from 'abstractions/DomComponent'
 import html from 'nanohtml'
+import noop from 'utils/noop'
 import store from 'controllers/store'
 import { radians } from 'missing-math'
 import { raf } from '@internet/raf'
@@ -42,7 +43,6 @@ export default class Panorama extends DomComponent {
     this.viewer.controls.phi = radians(window.configuration['panoramaInitialPitch'])
 
     raf.add(this.spy)
-
     this.viewer.render()
   }
 

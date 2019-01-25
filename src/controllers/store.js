@@ -10,7 +10,6 @@ if (!window.isProduction) {
 
 export default {
   watch: (k, cb, { immediate = false } = {}) => {
-    // console.warn('watch', k)
     events.on(NS + k, cb)
     immediate && cb(stored[k])
   },

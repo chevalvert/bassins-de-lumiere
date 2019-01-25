@@ -1,5 +1,4 @@
-$input-always-show: true;
-$input-handle-radius: 4px;
+$input-handle-radius: 8px;
 $input-handle-opacity: 0.7;
 $input-handle-iddle-opacity: 0.5;
 
@@ -15,20 +14,14 @@ $input-handle-iddle-opacity: 0.5;
     cursor: move;
     cursor: grab;
 
-    width: 2rem;
-    height: 2rem;
+    width: 6rem;
+    height: 6rem;
     transform: translate(-50%, -50%);
 
     &::after {
       content: '';
       @include easing(300ms);
-      @if $input-always-show {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-      } @else {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
-      }
+      transform: translate(-50%, -50%) scale(0.5);
       position: absolute;
       top: 50%;
       left: 50%;
@@ -36,7 +29,7 @@ $input-handle-iddle-opacity: 0.5;
       height: 100%;
       border-radius: 100%;
       border: $input-handle-radius solid $white;
-      background: rgba($accent, 0.8);
+      background: $accent;
     }
   }
 

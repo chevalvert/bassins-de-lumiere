@@ -20,6 +20,7 @@ const queue = url => new Promise(resolve => {
 })
 
 const load = async url => new Promise(resolve => {
+  if (!url) resolve()
   cached[NS + url].onload = function () {
     events.emit(url)
     resolve()
@@ -41,5 +42,9 @@ async function processQueue () {
 
 export default {
   load: (...urls) => urls.forEach(queue),
-  get: url => cached[NS + url]
+  get: url => {
+    // TODO: prioritize queued url
+    if (!cached[NS + url]) queue(url)
+    return cached[NS + url]
+  }
 }

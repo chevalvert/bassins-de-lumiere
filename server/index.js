@@ -8,33 +8,30 @@ const path = require('path')
 const rest = require('@server/utils/decorate-rest-action')
 const WebServer = require('@server/controllers/web-server')
 
+const dataset = {
+  path: makeAbsolute(configuration['dataset']),
+  files: {}
+}
+
 const server = new WebServer(configuration.host)
+const READABLE_FILE_EXTENSIONS = ['.json', '.svg', '.kml', '.txt']
 
 server.router.get('/configuration', rest((_, success) => success(configuration)))
-
+server.app.use('/panoramas', server.express.static(path.join(dataset.path, 'panoramas')))
 server.router.get('/dataset', rest(async (req, success) => {
-  // TODO: validate dataset
-  const dataset = {
-    path: makeAbsolute(configuration['dataset']),
-    files: {}
-  }
-
   dataset.package = await fs.readJson(path.join(dataset.path, 'package.json'))
 
   await Promise.all(Object.entries(dataset.package.files).map(async ([key, filename]) => {
     const filepath = path.join(dataset.path, filename)
-    dataset.files[key] = await fs.readFile(filepath, 'utf-8')
+    const ext = path.extname(filename)
+    if (~READABLE_FILE_EXTENSIONS.indexOf(ext)) {
+      dataset.files[key] = await fs.readFile(filepath, 'utf-8')
+    } else {
+      dataset.files[key] = 'assets/' + filename
+      server.app.use('/assets/' + filename, server.express.static(filepath))
+    }
   }))
-
-  // NOTE: this register the last requeted dataset as the main route for all panorama images
-  server.app.use('/panoramas', server.express.static(path.join(dataset.path, 'panoramas')))
-
   return success(dataset)
-}))
-
-server.router.get('/panorama/:filename', rest(async (req, success) => {
-  const filename = req.body.filename
-  console.log('TODO', '/dataset/pano/:id', filename)
 }))
 
 // server.router.post('/test', rest((req, success) => {

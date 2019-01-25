@@ -17,8 +17,11 @@ export default class SidebarPanoramaDetails extends DomComponent {
     this.refs.properties = {
       gid: html`<li data-label='gid'></li>`,
       svf: html`<li data-label='svf'></li>`,
-      area: html`<li data-label='area'></li>`,
-      perimeter: html`<li data-label='perimeter'></li>`
+      area: html`<li data-label='aire' data-unit='m²'></li>`,
+      perimeter: html`<li data-label='périmètre' data-unit='m²'></li>`,
+      sun_hits: html`<li data-label='sun_hits'></li>`,
+      sun_ratio: html`<li data-label='sun_ratio'></li>`,
+      sun_hours: html`<li data-label='sun_hours' data-unit='heures'></li>`
     }
 
     return html`

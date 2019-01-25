@@ -1,21 +1,43 @@
 .panoramas-launcher {
-  display: flex;
+  position: relative;
   font-size: 0;
   line-height: 0;
   overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
 
   &__panoramas {
-    list-style: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
     white-space: nowrap;
   }
 
   &__panorama {
     position: relative;
     display: inline-block;
-    width: calc(30vw - #{$gutter * 2});
+    width: calc(#{$sidebar--width} - #{$gutter * 2});
     height: 100%;
     overflow: hidden;
     margin-right: 1rem;
+
+    border: $gutter / 2 solid $white;
+    &:hover {
+      border-color: $accent;
+    }
+
+    &::before {
+      @include spinner(2rem, 0.2rem, $white, transparent, 1s);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -1rem;
+      margin-left: -1rem;
+    }
 
     img {
       position: absolute;

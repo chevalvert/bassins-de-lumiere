@@ -26,7 +26,7 @@ export default class MapBox extends DomComponent {
     })
 
     return html`
-    <section class='map-box'>
+    <section class='map-box' style='background-image: url(${map.background.src})'>
       ${map.element}
       <div class='map-box__overlay'>
         ${this.refs.overlay.raw()}

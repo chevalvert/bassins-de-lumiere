@@ -24,9 +24,24 @@
     color: $white;
   }
 
+  &__close:hover {
+    color: $accent;
+  }
+
   &__properties {}
 
+  &__properties li {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
   &__properties li::before {
-    content: attr(data-label)': ';
+    content: attr(data-label)' :';
+    font-size: small;
+    display: block;
+  }
+
+  &__properties li[data-unit]::after {
+    content: '\00a0'attr(data-unit);
   }
 }

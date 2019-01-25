@@ -10,10 +10,10 @@ process.title = appname
 
 /**
  * APP CONFIGURATION
- * Construct from package.json and .rythmusrc
+ * Construct from package.json and .apprc
  * Overridden in order by :
  * - cli args `--parent.child=value`
- * - environment variables `rythmus_parent__child=value`
+ * - environment variables `bassins-de-lumiere_parent__child=value`
  * SEE: https://github.com/dominictarr/rc#standards
  */
 const defaultConfigPath = path.join(__dirname, '..', '.apprc')

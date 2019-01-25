@@ -57,7 +57,6 @@ export default class InputHandle extends Input {
   startMove (e) {
     e.preventDefault()
 
-    // TODO: handle multitouch
     this.moving = true
     this.target = [e.pageX, e.pageY]
 
@@ -83,7 +82,7 @@ export default class InputHandle extends Input {
 
   targetCursor () {
     const path = store.get('path')
-    const { width, height, x, y } = this.refs.base.parentNode.getBoundingClientRect()
+    const { width, height, left, top } = this.refs.base.parentNode.getBoundingClientRect()
 
     let result
     let shortestDistance = Number.POSITIVE_INFINITY
@@ -93,7 +92,7 @@ export default class InputHandle extends Input {
         normalizedCandidate[0] * width,
         normalizedCandidate[1] * height
       ]
-      const distance = distSq(candidate, [this.target[0] - x, this.target[1] - y])
+      const distance = distSq(candidate, [this.target[0] - left, this.target[1] - top])
       if (distance < shortestDistance) {
         shortestDistance = distance
         result = t
@@ -109,10 +108,8 @@ export default class InputHandle extends Input {
 
   update () {
     if (!this.mounted) return
-    window.requestAnimationFrame(() => {
-      const [x, y] = this.position
-      this.refs.base.style.transform = `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px)`
-    })
+    const [x, y] = this.position
+    this.refs.base.style.transform = `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px)`
   }
 
   set value (value) {

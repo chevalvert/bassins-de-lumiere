@@ -16,6 +16,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: $black;
 }
 
 body.has-grabbing {
@@ -29,13 +30,4 @@ body.is-loading .layout-left::after {
   left: 50%;
   top: $gutter;
   margin-left: -1rem;
-}
-
-main {
-  position: fixed;
-  display: flex;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }

@@ -17,6 +17,7 @@
   "panoramaInitialPitch": 0,
   "panoramaHeadingOffset": 180,
   "pathHandlesAdaptiveEasingRange": [1, 0.09],
+  "panoramasLauncherUpdaterDebounceDelay": 500,
 
   "html": {
     "title": "bassins<br>de&nbsp;lumière"

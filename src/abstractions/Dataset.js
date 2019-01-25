@@ -21,7 +21,7 @@ export default class Dataset {
 
     const svgGroups = shapesElement.querySelectorAll('g')
 
-    this.map = new Map(mapElement)
+    this.map = new Map(mapElement, { backgroundUrl: this.files.background })
     this.features = JSON.parse(this.files.features)
     this.panoramas = this.features.map(f => f.properties.panorama).filter(Boolean)
     this.points = [...svgGroups].map((svgGroup, index) => {
