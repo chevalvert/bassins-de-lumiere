@@ -1,0 +1,8 @@
+.map-box-overlay--iddlers {
+  --iddlers-color: #{$white};
+  --iddlers-radius: 2px;
+  --iddlers-max-deviation: 20px;
+
+  animation: fadeIn 300ms $ease;
+
+}
