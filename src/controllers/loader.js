@@ -19,12 +19,12 @@ export default async () => {
     window.configuration = await rest.get('configuration')
 
     screen.setMessage(null, { progress: 0.6 })
-
     const dataset = new Dataset(await rest.get('dataset'))
     store.set('points', dataset.points)
     store.set('path', dataset.path)
     store.set('map', dataset.map)
 
+    screen.setMessage(null, { progress: 0.7 })
     cache.load(...dataset.panoramas.map(filename => host + '/' + filename))
 
     screen.setMessage(null, { progress: 1 })
