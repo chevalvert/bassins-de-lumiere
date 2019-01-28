@@ -27,10 +27,12 @@ function spawn () {
   const nextSpawnDelay = lerp(...window.configuration['iddlersRandomSpawnIntervalRange'], Math.random())
   clearTimeout(waitForSpawn)
   waitForSpawn = setTimeout(() => {
-    iddlers.push(new Iddler())
-    store.set('iddlers', iddlers)
-    events.emit('spawn')
-    if (iddlers.length < window.configuration['iddlersMaxLength']) spawn()
+    if (iddlers.length < window.configuration['iddlersMaxLength']) {
+      iddlers.push(new Iddler())
+      store.set('iddlers', iddlers)
+      events.emit('spawn')
+    }
+    spawn()
   }, nextSpawnDelay)
 }
 

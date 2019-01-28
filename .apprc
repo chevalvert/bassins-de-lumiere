@@ -4,15 +4,22 @@
     "dist": "build"
   },
 
+  "hardware": {
+    "pixelsWidth": 32,
+    "pixelsHeight": 80,
+    "white": [1, 1, 1],
+    "direction": -1
+  },
+
   "dataset": "/Users/RNO/Desktop/vert1",
 
   "onionSkinsOpacityCutoffFactor": 6,
   "onionSkinsMaskOpacity": 0.9,
   "defaultAperture": 1,
   "defaultHeading": 0,
-  "iddleAfter": -1,
+  "iddleAfter": 1000,
   "iddlerSpeedRange": [0.0001, 0.001],
-  "iddlersMaxLength": 50,
+  "iddlersMaxLength": 10,
   "iddlersRandomSpawnIntervalRange": [0, 1000],
   "panoramaInitialPitch": 0,
   "panoramaHeadingOffset": 180,
