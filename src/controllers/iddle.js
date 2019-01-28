@@ -8,10 +8,16 @@ let waitForIddleness
 // the iddle 60 frames per seconds by setting the stored "heading" value.
 
 function reset () {
+  if (!window.configuration['iddleAfter'] || window.configuration['iddleAfter'] < 0) {
+    return
+  }
+
   store.set('iddle', false)
+  document.body.classList.remove('is-iddle')
   clearTimeout(waitForIddleness)
   waitForIddleness = setTimeout(() => {
     store.set('iddle', true)
+    document.body.classList.add('is-iddle')
   }, window.configuration['iddleAfter'])
 }
 

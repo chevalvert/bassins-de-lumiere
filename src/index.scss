@@ -13,6 +13,12 @@ $gray: #353535;
 $gutter: 2rem;
 $sidebar--width: 30rem;
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
 @import 'sass/base';
 @import 'sass/layout';
 
@@ -21,6 +27,7 @@ $sidebar--width: 30rem;
 @import 'components/input-toggle';
 @import 'components/log-screen';
 @import 'components/map-box';
+@import 'components/map-box-overlay--iddlers';
 @import 'components/map-box-overlay';
 @import 'components/onion-skin';
 @import 'components/onion-skin-mask';

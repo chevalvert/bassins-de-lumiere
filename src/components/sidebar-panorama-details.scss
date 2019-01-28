@@ -1,8 +1,3 @@
-@keyframes sidebar-panorama-details--fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 .sidebar-panorama-details {
   position: absolute;
   top: 30vw;
@@ -13,7 +8,7 @@
   z-index: 10;
   padding: $gutter;
 
-  animation: sidebar-panorama-details--fadeIn 300ms $ease;
+  animation: fadeIn 300ms $ease;
 
   &__close {
     position: fixed;

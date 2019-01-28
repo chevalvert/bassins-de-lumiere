@@ -80,6 +80,7 @@
     "path-lerp": "^1.0.2",
     "rc": "^1.2.8",
     "reconnectingwebsocket": "^1.0.0",
+    "serialed": "Hemisphere-Project/serialed",
     "tiny-emitter": "^2.0.2",
     "whatwg-fetch": "^3.0.0",
     "ws": "^3.2.0"

@@ -1,0 +1,10 @@
+.map-box-overlay--iddlers {
+  --iddlers-fill: transparent;
+  --iddlers-stroke: #{$white};
+  --iddlers-stroke-width: 2px;
+  --iddlers-radius: 5px;
+  --iddlers-max-deviation: 10px;
+
+  animation: fadeIn 300ms $ease;
+
+}
