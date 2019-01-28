@@ -33,19 +33,25 @@ export default class MapBoxOverlay extends Canvas {
   getStyle () {
     const style = window.getComputedStyle(this.refs.base)
     this.style = {
-      color: style.getPropertyValue('--iddlers-color'),
+      fill: style.getPropertyValue('--iddlers-fill'),
+      stroke: style.getPropertyValue('--iddlers-stroke'),
+      strokeWidth: parseInt(style.getPropertyValue('--iddlers-stroke-width')),
       radius: parseInt(style.getPropertyValue('--iddlers-radius')),
       maxDeviation: parseInt(style.getPropertyValue('--iddlers-max-deviation'))
     }
   }
 
   update () {
-    const path = store.get('path')
     const iddlers = store.get('iddlers')
+    if (!iddlers || !iddlers.length) return
+
+    const path = store.get('path')
     if (!window.isProduction) this.getStyle()
 
     this.clear()
-    this.context.fillStyle = this.style.color
+    this.context.fillStyle = this.style.fill
+    this.context.strokeStyle = this.style.stroke
+    this.context.lineWidth = this.style.strokeWidth
 
     iddlers.forEach(iddler => {
       const [nx, ny] = path.lerp(iddler.position)
@@ -56,6 +62,15 @@ export default class MapBoxOverlay extends Canvas {
       this.context.beginPath()
       this.context.arc(x, y, this.style.radius, 0, 2 * Math.PI, false)
       this.context.fill()
+      this.context.stroke()
+
+      this.context.beginPath()
+      this.context.moveTo(x, y)
+      this.context.lineTo(
+        x + Math.cos(iddler.heading) * this.style.radius * 2,
+        y + Math.sin(iddler.heading) * this.style.radius * 2
+      )
+      this.context.stroke()
     })
   }
 }

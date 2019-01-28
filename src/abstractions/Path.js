@@ -10,6 +10,7 @@ export default class Path {
     this.anchors = [this.rawPoints[0], lastOf(this.rawPoints)]
 
     this.points = [...this.rawPoints]
+    this.memoizedAngles = {}
     this.lerper = new PathLerp(this.points.map(p => ({x: p[0], y: p[1]})))
 
     store.watch('map', map => {
@@ -39,15 +40,24 @@ export default class Path {
   }
 
   angle (t) {
-    const index = Math.floor(t * (this.points.length - 1))
+    t = parseFloat(t.toFixed(2))
+
+    if (this.memoizedAngles[t]) return this.memoizedAngles[t]
+
+    const index = Math.ceil(t * (this.points.length - 1))
     let a = this.points[index]
     let b = this.points[index + 1]
+
+    if (!a) return 0
 
     if (!b) {
       a = this.points[index - 1]
       b = this.points[index]
     }
 
-    return angleBetweenTwoPoints(a, b)
+    const angle = angleBetweenTwoPoints(a, b)
+    this.memoizedAngles[t] = angle
+
+    return angle
   }
 }

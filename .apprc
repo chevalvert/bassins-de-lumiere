@@ -10,7 +10,7 @@
   "onionSkinsMaskOpacity": 0.9,
   "defaultAperture": 1,
   "defaultHeading": 0,
-  "iddleAfter": 3000,
+  "iddleAfter": -1,
   "iddlerSpeedRange": [0.0001, 0.001],
   "iddlersMaxLength": 50,
   "iddlersRandomSpawnIntervalRange": [0, 1000],
