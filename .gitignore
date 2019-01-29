@@ -1,4 +1,3 @@
-build/*
 # These files should be buit using build-dataset
 static/datas/*/spheres
 static/datas/*/features.json
