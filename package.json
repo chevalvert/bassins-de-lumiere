@@ -1,14 +1,15 @@
 {
   "name": "bassins-de-lumiere",
   "version": "0.1.1",
-  "description": "Bassin de lumière main app",
+  "description": "Bassins de lumière main app",
   "bin": {
     "bdl-server": "server/index.js"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/serve.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
-    "preversion": "npm run build"
+    "preversion": "npm run build",
+    "test": "cross-env NODE_ENV=production node node_modules/serialed/demo.js"
   },
   "repository": {
     "type": "git",

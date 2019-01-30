@@ -4,24 +4,39 @@
 <br>
 
 ## Installation
-```sh
-curl https://raw.githubusercontent.com/chevalvert/bassins-de-lumiere/master/scripts/install.sh | bash
+```console
+$ curl https://raw.githubusercontent.com/chevalvert/bassins-de-lumiere/master/scripts/install.sh | bash
 ```
 
 ## Usage
-```sh
-node bassins-de-lumiere/server
+```console
+$ node bassins-de-lumiere/server
 ```
 
 ## Configuration
-See [`.apprc`](.apprc)
+See [`.apprc`](.apprc) and the [`rc` package](https://github.com/dominictarr/rc#standards).
 
-## Development
-```sh
-yarn start  # Run webpack dev-server
-node server # Run bdl web-server
+## Dataset
+See [`bdl-dataset-builder`](https://github.com/chevalvert/bdl-dataset-builder).
+
+## Tests
+```console
+$ npm run test
 ```
 
+## Development
+###### Run webpack dev-server
+```console
+$ npm run start
+```
+
+###### Run `bassins-de-lumiere` server
+```console
+$ node server 
+```
+
+###### Hardware related development
+See [`bdl-playground`](https://github.com/chevalvert/bdl-playground).
 
 ## License
 [MIT.](https://tldrlegal.com/license/mit-license)
