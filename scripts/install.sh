@@ -15,11 +15,32 @@ ftest () {
   fi
 }
 
+# Use colors, but only if connected to a terminal, and that terminal
+# supports them.
+if which tput >/dev/null 2>&1; then
+  ncolors=$(tput colors)
+fi
+if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+  RED="$(tput setaf 1)"
+  GREEN="$(tput setaf 2)"
+  YELLOW="$(tput setaf 3)"
+  BLUE="$(tput setaf 4)"
+  BOLD="$(tput bold)"
+  NORMAL="$(tput sgr0)"
+else
+  RED=""
+  GREEN=""
+  YELLOW=""
+  BLUE=""
+  BOLD=""
+  NORMAL=""
+fi
+
 # feature tests
 features () {
   for f in "${@}"; do
     ftest "${f}" || {
-      echo >&2 "error: Missing \`${f}'! Make sure it exists and try again."
+      echo >&2 "${RED}error: Missing \`${f}'! Make sure it exists and try again.${NORMAL}"
       return 1
     }
   done
@@ -64,16 +85,16 @@ ask () {
 # main setup
 setup () {
   echo
-  echo "This will install $REPO and all its dependencies."
+  echo "${BLUE}This will install ${BOLD}$REPO${NORMAL}${BLUE} and all its dependencies${NORMAL}"
   ask "Do you wish to continue ?" || return 1
 
   echo
-  echo "Running $REPO installation..."
+  echo "${BLUE}Running $REPO installation...${NORMAL}"
   echo
 
   # Fail if destination exists
   test -d "${DEST}" && {
-    echo >&2 "warning: Already exists: '$DEST'"
+    echo >&2 "${YELLOW}warning: Already exists: ${BOLD}$DEST${NORMAL}"
     ask "Overwrite $DEST ?" || return 1
     rm -rf $DEST
     echo
@@ -87,21 +108,14 @@ setup () {
     echo
     echo "Cloning $REPO..."
     git clone --depth=1 "${REMOTE}" "${DEST}" || return $?
-    rm -rf $DEST/.git
 
     echo
     echo "Installing $REPO..."
-    (cd $DEST && npm link --only=production)
+    (cd $DEST && npm install --production)
 
     echo
-    if ! command $REPO -v  > /dev/null 2>&1; then
-      echo >&2 "error: Something went wrong during installation, please try again or install manually."
-      return 1
-    else
-      echo "$REPO v$(command $REPO -v) successfully installed !"
-      echo
-      echo "Visit ${REMOTE/.git/#readme} to read documentation or type '$REPO --help'"
-    fi
+    echo "${GREEN}${BOLD}$REPO ${NORMAL}${GREEN}successfully installed in ${BOLD}$DEST${NORMAL}"
+    echo "${BLUE}Visit ${BOLD}${REMOTE/.git/#readme}${NORMAL}${BLUE} to read documentation${NORMAL}"
   } >&2
   return $?
 }

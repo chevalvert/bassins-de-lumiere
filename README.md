@@ -10,7 +10,7 @@ curl https://raw.githubusercontent.com/chevalvert/bassins-de-lumiere/master/scri
 
 ## Usage
 ```sh
-pm2 start bdl-server
+node bassins-de-lumiere/server
 ```
 
 ## Configuration
@@ -18,7 +18,7 @@ See [`.apprc`](.apprc)
 
 ## Development
 ```sh
-yarn start # Run webpack dev-server
+yarn start  # Run webpack dev-server
 node server # Run bdl web-server
 ```
 
