@@ -1,6 +1,6 @@
 {
   "name": "bassins-de-lumiere",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bassin de lumière main app",
   "bin": {
     "bdl-server": "server/index.js"
