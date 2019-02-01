@@ -4,6 +4,10 @@
     "dist": "build"
   },
 
+  "debug": {
+    "overrideHostname": "bassin.local"
+  },
+
   "hardware": {
     "pixelsWidth": 32,
     "pixelsHeight": 80,

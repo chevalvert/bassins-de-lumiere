@@ -1,9 +1,8 @@
 import Emitter from 'tiny-emitter'
+import host from 'utils/host'
 import ReconnectingWebSocket from 'reconnectingwebsocket'
 
-const port = window.configuration.host.port
-const address = window.location.hostname
-const ws = new ReconnectingWebSocket(`ws://${address}:${port}`)
+const ws = new ReconnectingWebSocket(host.replace('http', 'ws'))
 const em = new Emitter()
 
 let connected = false
