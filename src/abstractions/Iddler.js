@@ -9,11 +9,7 @@ export default class Iddler {
     this.direction = Math.random() > 0.5 ? -1 : 1
     this.position = 0.5 - this.direction * 0.5
     this.heading = this.targetHeading
-    this.color = [
-      Math.floor(Math.random() * 10),
-      Math.floor(Math.random() * 10),
-      Math.floor(Math.random() * 10)
-    ]
+    this.color = window.configuration['iddlerColor']
   }
 
   get targetHeading () {
