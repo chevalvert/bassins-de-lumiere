@@ -25,11 +25,14 @@ function update () {
       store.get('maxProgressPercent')
     ].sort((a, b) => a - b)
 
+    const height = window.configuration['hardware'].pixelsHeight
+    const thickness = Math.floor(yrange[1] * height) - Math.floor(yrange[0] * height)
+
     ws.send('strate', Strate({
       aperture: store.get('aperture'),
       heading: store.get('heading'),
       position: yrange[0],
-      thickness: Math.floor((yrange[1] - yrange[0]) * window.configuration['hardware'].pixelsHeight)
+      thickness
     }))
   }
 }
