@@ -3,6 +3,15 @@ import html from 'nanohtml'
 import raw from 'nanohtml/raw'
 import store from 'controllers/store'
 
+const parsers = {
+  gid: v => v,
+  svf: v => (v * 100).toFixed(1),
+  area: v => Math.round(v).toFixed(0),
+  perimeter: v => Math.round(v).toFixed(0),
+  sun_ratio: v => (v * 100).toFixed(1),
+  sun_hours: v => v
+}
+
 export default class SidebarPanoramaDetails extends DomComponent {
   didMount () {
     this.bindFuncs(['load'])
@@ -15,13 +24,12 @@ export default class SidebarPanoramaDetails extends DomComponent {
 
   render () {
     this.refs.properties = {
-      gid: html`<li data-label='gid'></li>`,
-      svf: html`<li data-label='svf'></li>`,
+      gid: html`<li data-label='position'></li>`,
+      svf: html`<li data-label='svf' data-unit='%'></li>`,
       area: html`<li data-label='aire' data-unit='m²'></li>`,
-      perimeter: html`<li data-label='périmètre' data-unit='m²'></li>`,
-      sun_hits: html`<li data-label='sun_hits'></li>`,
-      sun_ratio: html`<li data-label='sun_ratio'></li>`,
-      sun_hours: html`<li data-label='sun_hours' data-unit='heures'></li>`
+      perimeter: html`<li data-label='périmètre' data-unit='m'></li>`,
+      sun_ratio: html`<li data-label="ratio théorique d'ensoleillement" data-unit='%'></li>`,
+      sun_hours: html`<li data-label='ensoleillement annuel moyen' data-unit='heures'></li>`
     }
 
     return html`
@@ -47,7 +55,9 @@ export default class SidebarPanoramaDetails extends DomComponent {
 
     Object.entries(point.features.properties).forEach(([key, value]) => {
       if (!this.refs.properties.hasOwnProperty(key)) return
-      this.refs.properties[key].innerHTML = value
+      this.refs.properties[key].innerHTML = parsers[key]
+        ? parsers[key](value)
+        : value
     })
 
     this.show()
