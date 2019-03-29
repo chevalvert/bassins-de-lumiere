@@ -22116,7 +22116,7 @@ var Sidebar = function (_DomComponent) {
           label: 'direction',
           storeKey: 'heading',
           value: window.configuration['defaultHeading'],
-          range: [0, 1],
+          range: [-1, 1],
           step: 1 / 360
         })
       };
@@ -22678,6 +22678,27 @@ var PanoramasLauncher = function (_DomComponent) {
 
 
 
+var parsers = {
+  gid: function gid(v) {
+    return v;
+  },
+  svf: function svf(v) {
+    return (v * 100).toFixed(1);
+  },
+  area: function area(v) {
+    return Math.round(v).toFixed(0);
+  },
+  perimeter: function perimeter(v) {
+    return Math.round(v).toFixed(0);
+  },
+  sun_ratio: function sun_ratio(v) {
+    return (v * 100).toFixed(1);
+  },
+  sun_hours: function sun_hours(v) {
+    return v;
+  }
+};
+
 var SidebarPanoramaDetails = function (_DomComponent) {
   __WEBPACK_IMPORTED_MODULE_7_babel_runtime_helpers_inherits___default()(SidebarPanoramaDetails, _DomComponent);
 
@@ -22701,16 +22722,15 @@ var SidebarPanoramaDetails = function (_DomComponent) {
   }, {
     key: 'render',
     value: function render() {
-      var _li, _li2, _li3, _li4, _li5, _li6, _li7, _sidebarPanoramaDetailsClose, _sidebarPanoramaDetailsProperties, _sidebarPanoramaDetails;
+      var _li, _li2, _li3, _li4, _li5, _li6, _sidebarPanoramaDetailsClose, _sidebarPanoramaDetailsProperties, _sidebarPanoramaDetails;
 
       this.refs.properties = {
-        gid: (_li = document.createElement('li'), _li.setAttribute('data-label', 'gid'), _li),
-        svf: (_li2 = document.createElement('li'), _li2.setAttribute('data-label', 'svf'), _li2),
+        gid: (_li = document.createElement('li'), _li.setAttribute('data-label', 'position'), _li),
+        svf: (_li2 = document.createElement('li'), _li2.setAttribute('data-label', 'svf'), _li2.setAttribute('data-unit', '%'), _li2),
         area: (_li3 = document.createElement('li'), _li3.setAttribute('data-label', 'aire'), _li3.setAttribute('data-unit', 'm\xB2'), _li3),
-        perimeter: (_li4 = document.createElement('li'), _li4.setAttribute('data-label', 'p\xE9rim\xE8tre'), _li4.setAttribute('data-unit', 'm\xB2'), _li4),
-        sun_hits: (_li5 = document.createElement('li'), _li5.setAttribute('data-label', 'sun_hits'), _li5),
-        sun_ratio: (_li6 = document.createElement('li'), _li6.setAttribute('data-label', 'sun_ratio'), _li6),
-        sun_hours: (_li7 = document.createElement('li'), _li7.setAttribute('data-label', 'sun_hours'), _li7.setAttribute('data-unit', 'heures'), _li7)
+        perimeter: (_li4 = document.createElement('li'), _li4.setAttribute('data-label', 'p\xE9rim\xE8tre'), _li4.setAttribute('data-unit', 'm'), _li4),
+        sun_ratio: (_li5 = document.createElement('li'), _li5.setAttribute('data-label', 'ratio th\xE9orique d\'ensoleillement'), _li5.setAttribute('data-unit', '%'), _li5),
+        sun_hours: (_li6 = document.createElement('li'), _li6.setAttribute('data-label', 'ensoleillement annuel moyen'), _li6.setAttribute('data-unit', 'heures'), _li6)
       };
 
       return _sidebarPanoramaDetails = document.createElement('section'), _sidebarPanoramaDetails.setAttribute('class', 'sidebar-panorama-details'), __WEBPACK_IMPORTED_MODULE_8_yo_yoify_lib_appendChild___default()(_sidebarPanoramaDetails, [' ', (_sidebarPanoramaDetailsClose = document.createElement('a'), _sidebarPanoramaDetailsClose.setAttribute('href', '#'), _sidebarPanoramaDetailsClose.onclick = function (e) {
@@ -22737,7 +22757,7 @@ var SidebarPanoramaDetails = function (_DomComponent) {
             value = _ref2[1];
 
         if (!_this2.refs.properties.hasOwnProperty(key)) return;
-        _this2.refs.properties[key].innerHTML = value;
+        _this2.refs.properties[key].innerHTML = parsers[key] ? parsers[key](value) : value;
       });
 
       this.show();
@@ -26842,4 +26862,4 @@ module.exports = function (val) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=741e7029ff240425d9f0.js.map
+//# sourceMappingURL=3dede0a2ab86d1e8fa89.js.map
