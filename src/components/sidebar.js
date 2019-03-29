@@ -35,7 +35,7 @@ export default class Sidebar extends DomComponent {
         label: 'direction',
         storeKey: 'heading',
         value: window.configuration['defaultHeading'],
-        range: [0, 1],
+        range: [-1, 1],
         step: 1 / 360
       })
     }
