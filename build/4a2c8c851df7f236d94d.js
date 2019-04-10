@@ -3957,6 +3957,10 @@ function dispose () {
   var width = window.configuration['hardware'].pixelsWidth;
   var height = window.configuration['hardware'].pixelsHeight;
 
+  // NOTE: this handles negative value :
+  // -0.1 → 0.9, -0.9 → 0.1, etc…
+  heading = (1 + heading) % 1;
+
   var xrange = [Math.floor(heading * width), Math.floor((heading + aperture) * width)].sort(function (a, b) {
     return a - b;
   });
@@ -26862,4 +26866,4 @@ module.exports = function (val) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=3dede0a2ab86d1e8fa89.js.map
+//# sourceMappingURL=4a2c8c851df7f236d94d.js.map

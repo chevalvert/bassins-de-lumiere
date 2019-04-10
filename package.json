@@ -9,6 +9,7 @@
     "start": "cross-env NODE_ENV=development node scripts/serve.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "preversion": "npm run build",
+    "version": "git add build",
     "test": "cross-env NODE_ENV=production node node_modules/serialed/demo.js"
   },
   "repository": {
