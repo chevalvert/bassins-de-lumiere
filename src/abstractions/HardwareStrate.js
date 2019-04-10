@@ -10,6 +10,10 @@ export default ({
   const width = window.configuration['hardware'].pixelsWidth
   const height = window.configuration['hardware'].pixelsHeight
 
+  // NOTE: this handles negative value :
+  // -0.1 → 0.9, -0.9 → 0.1, etc…
+  heading = (1 + heading) % 1
+
   const xrange = [
     Math.floor(heading * width),
     Math.floor((heading + aperture) * width)
