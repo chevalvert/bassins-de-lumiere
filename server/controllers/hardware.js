@@ -1,7 +1,7 @@
 const configuration = require('@configuration')
-const SerialedController = require('serialed')
+const serialed = require('serialed')
 
-const ctrlr = new SerialedController()
+const ctrlr = new serialed.SerialedController()
 const width = configuration['hardware'].pixelsWidth
 const height = configuration['hardware'].pixelsHeight
 
